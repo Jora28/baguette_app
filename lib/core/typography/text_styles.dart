@@ -1,27 +1,27 @@
 import 'package:flutter/widgets.dart';
 
-import '../colors.dart';
+import '../utils/colors.dart';
 
 /// History of Adventures Text Style Definitions
 class AppTextStyle {
   static const _baseTextStyle = TextStyle(
       // fontFamily: AppFontFamily.openSans,
-      color: AppColors.blackB,
+      color: AppColors.black,
       fontStyle: FontStyle.normal);
 
   static const _titleTextStyleItalic = TextStyle(
       // // fontFamily: AppFontFamily.openSans,
-      color: AppColors.blackB,
+      color: AppColors.black,
       fontStyle: FontStyle.italic);
 
   static const _titleTextStyleBold = TextStyle(
     // // fontFamily: AppFontFamily.bebasNeue,
-    color: AppColors.blackB,
+    color: AppColors.black,
   );
 
   static const _titleTextStyleLora = TextStyle(
     // // fontFamily: AppFontFamily.lora,
-    color: AppColors.blackB,
+    color: AppColors.black,
   );
 
   /// Headline 1 Text Style

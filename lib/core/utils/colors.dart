@@ -5,19 +5,21 @@ abstract class AppColors {
   /// White
   static const Color white = Color(0xffffffff);
 
-  static const Color blackB = Color(0xff201a29);
+  // Withe 54%
+  static const white54 = Color(0xFFE5E7EC);
+  
+  //Red
+  static const red = Color(0xFFA22752);
+
+  // Blue
+  static const blue = Color(0xFF006171);
+
+  // Gold 
+  static const gold = Color(0xFFbAA769);
 
   /// Black
-  static const Color blackG = Color(0xFF202124);
+  static const Color black = Color(0x8A000000);
 
-  /// Black 54% opacity
-  static const Color black54 = Color(0x8A000000);
-
-  /// Black 25% opacity
-  static const Color black25 = Color(0x40202124);
-
-  /// Deep blue
-  static const Color blueDeep = Color(0xff102B56);
 
   /// Green
   static const Color green = Color(0xff55B791);
@@ -25,11 +27,6 @@ abstract class AppColors {
   /// Orange
   static const Color orange = Color(0xffFF8A00);
 
-  /// Red
-  static const Color red = Color(0xffE22900);
-
-  /// Yellow
-  static const Color yellow = Color(0xffFBBF5C);
 
   /// Grey
   static const Color grey = Color(0xffD0CACB);
@@ -39,8 +36,6 @@ abstract class AppColors {
 
   // Transparent
   static const Color transpatent = Colors.transparent;
-  static const Color akaroaDeep = Color(0xffD8C2AB);
-  static const Color akaroa = Color(0xffdeccb8);
 
   static const LinearGradient linearGradient1 = LinearGradient(
       begin: Alignment.topLeft,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
-import 'typography/text_styles.dart';
+import '../typography/text_styles.dart';
 
 const _smallTextScaleFactor = 0.80;
 
@@ -14,7 +14,7 @@ class DefaultTheme {
         thumbColor: MaterialStateProperty.all(AppColors.orange),
       ),
       highlightColor: AppColors.orange,
-      colorScheme: ColorScheme.fromSwatch(accentColor: AppColors.blueDeep),
+      colorScheme: ColorScheme.fromSwatch(accentColor: AppColors.blue),
       appBarTheme: _appBarTheme,
       elevatedButtonTheme: _elevatedButtonTheme,
       outlinedButtonTheme: _outlinedButtonTheme,
@@ -101,7 +101,7 @@ class DefaultTheme {
   }
 
   static AppBarTheme get _appBarTheme {
-    return const AppBarTheme(color: AppColors.blueDeep);
+    return const AppBarTheme(color: AppColors.blue);
   }
 
   static ElevatedButtonThemeData get _elevatedButtonTheme {
@@ -112,7 +112,7 @@ class DefaultTheme {
           borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
         padding: const EdgeInsets.symmetric(vertical: 16),
-        primary: AppColors.blueDeep,
+        primary: AppColors.blue,
         minimumSize: const Size(208, 54),
       ),
     );
@@ -165,11 +165,11 @@ class DefaultTheme {
       indicator: UnderlineTabIndicator(
         borderSide: BorderSide(
           width: 2.0,
-          color: AppColors.blueDeep,
+          color: AppColors.blue,
         ),
       ),
-      labelColor: AppColors.blueDeep,
-      unselectedLabelColor: AppColors.black25,
+      labelColor: AppColors.blue,
+      unselectedLabelColor: AppColors.black,
       indicatorSize: TabBarIndicatorSize.tab,
     );
   }
@@ -178,7 +178,7 @@ class DefaultTheme {
     return const DividerThemeData(
       space: 0,
       thickness: 1,
-      color: AppColors.black25,
+      color: AppColors.black,
     );
   }
 }
