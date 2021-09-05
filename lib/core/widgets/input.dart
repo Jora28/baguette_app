@@ -8,9 +8,7 @@ class CustumInput extends StatelessWidget {
   final FormFieldValidator<String> validator;
   final TextEditingController controller;
   final bool obscureText;
-  final FocusNode focusNode;
   CustumInput({
-    required this.focusNode,
     required this.hintText,
     required this.prefix,
     required this.onSaved,
@@ -23,7 +21,6 @@ class CustumInput extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: TextFormField(
-        focusNode: focusNode,
         validator: validator,
         onSaved: onSaved,
         controller: controller,
@@ -41,8 +38,8 @@ class CustumInput extends StatelessWidget {
           focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: AppColors.blue, width: 1)),
           enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                  color: AppColors.blue.withOpacity(0.3), width: 1)),
+              borderSide:
+                  BorderSide(color: AppColors.blue.withOpacity(0.3), width: 1)),
           prefixIcon: Icon(
             prefix,
             color: AppColors.blue,

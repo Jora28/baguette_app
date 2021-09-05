@@ -1,4 +1,4 @@
-import 'package:baguette_app/core/router.gr.dart';
+import 'package:baguette_app/core/widgets/loading.dart';
 import 'package:baguette_app/core/widgets/show_toast.dart';
 import 'package:baguette_app/features/sign_in/data/data_sourse.dart';
 import 'package:baguette_app/features/sign_in/presentation/bloc/signin_bloc.dart';
@@ -14,7 +14,7 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  final AuthServise authServise = AuthServise();
+  final SignInServise authServise = SignInServise();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class _SignInPageState extends State<SignInPage> {
                 if (state is SigninInitial)
                   SignInWidget()
                 else if (state is SignInRequest)
-                  buildLoading()
+                  LoadingWidget()
               ],
             );
           },
@@ -45,9 +45,5 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  Widget buildLoading() {
-    return Center(
-      child: CircularProgressIndicator(),
-    );
-  }
+
 }

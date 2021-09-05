@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 
 class Customer extends Equatable {
-  String id;
-  String name;
-  String email;
+   String id;
+   String name;
+   String email;
 
   Customer({
     required this.id,

@@ -9,6 +9,7 @@ import 'package:flutter/material.dart' as _i2;
 
 import '../features/sign_in/presentation/pages/all_prodpage.dart' as _i3;
 import '../features/sign_in/presentation/pages/sign_in_page.dart' as _i4;
+import '../features/sign_up/presentation/pages/sign_up_page.dart' as _i5;
 
 class FlutterRouter extends _i1.RootStackRouter {
   FlutterRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -22,7 +23,7 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i3.AllProductPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
     SignInPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
@@ -31,7 +32,16 @@ class FlutterRouter extends _i1.RootStackRouter {
           return const _i4.SignInPage();
         },
         transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
+        opaque: true,
+        barrierDismissible: false),
+    SignUpPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i5.SignUpPage();
+        },
+        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false)
   };
@@ -39,7 +49,8 @@ class FlutterRouter extends _i1.RootStackRouter {
   @override
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(AllProductPageRoute.name, path: '/all-product-page'),
-        _i1.RouteConfig(SignInPageRoute.name, path: '/')
+        _i1.RouteConfig(SignInPageRoute.name, path: '/'),
+        _i1.RouteConfig(SignUpPageRoute.name, path: '/sign-up-page')
       ];
 }
 
@@ -53,4 +64,10 @@ class SignInPageRoute extends _i1.PageRouteInfo {
   const SignInPageRoute() : super(name, path: '/');
 
   static const String name = 'SignInPageRoute';
+}
+
+class SignUpPageRoute extends _i1.PageRouteInfo {
+  const SignUpPageRoute() : super(name, path: '/sign-up-page');
+
+  static const String name = 'SignUpPageRoute';
 }

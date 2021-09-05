@@ -16,7 +16,6 @@ void main() async {
 }
 
 class BaguetteApp extends StatelessWidget {
-  // This widget is the root of your application.
   final _appRouter = FlutterRouter();
 
   @override
@@ -26,7 +25,6 @@ class BaguetteApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // localizationsDelegates: AppLocalizations.localizationsDelegates,
       routerDelegate: _appRouter.delegate(),
       routeInformationParser: _appRouter.defaultRouteParser(),
       debugShowCheckedModeBanner: false,

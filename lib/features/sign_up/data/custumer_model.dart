@@ -1,4 +1,4 @@
-import 'package:baguette_app/features/sign_in/domain/customer.dart';
+import 'package:baguette_app/features/sign_up/domain/customer.dart';
 
 class CustomerModel extends Customer {
   CustomerModel({

@@ -1,75 +1,78 @@
-//import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
 import 'package:baguette_app/core/router.gr.dart';
 import 'package:baguette_app/core/utils/colors.dart';
 import 'package:baguette_app/core/utils/string_utils.dart';
 import 'package:baguette_app/core/widgets/button.dart';
 import 'package:baguette_app/core/widgets/input.dart';
-import 'package:auto_route/auto_route.dart';
-
-import 'package:baguette_app/features/sign_in/presentation/bloc/signin_bloc.dart';
-import 'package:baguette_app/features/sign_up/presentation/widgets/sign_up_widget.dart';
+import 'package:baguette_app/features/sign_up/data/custumer_model.dart';
+import 'package:baguette_app/features/sign_up/presentation/bloc/signup_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:auto_route/auto_route.dart';
 
-class SignInWidget extends StatefulWidget {
-  static final routeName = 'SingInPage';
+class SignUpWidget extends StatefulWidget {
+  static final routeName = 'SingUpPage';
 
-  SignInWidget({
-    Key? key,
-  }) : super(key: key);
+  SignUpWidget({Key? key}) : super(key: key);
 
   @override
-  _SignInWidgetState createState() => _SignInWidgetState();
+  _SignUpWidgetState createState() => _SignUpWidgetState();
 }
 
-class _SignInWidgetState extends State<SignInWidget> {
-  final _formStateSingIn = GlobalKey<FormState>();
-
+class _SignUpWidgetState extends State<SignUpWidget> {
+  final GlobalKey<FormState> _formStateSingIn = GlobalKey<FormState>();
+  String? password;
+  String? email;
+  String? userName;
+  CustomerModel customerModel = CustomerModel(email: '', id: '', name: '');
   TextEditingController _emailController = TextEditingController();
 
   TextEditingController _passwordEditCotroller = TextEditingController();
+  TextEditingController _nikNameeditController = TextEditingController();
 
-  String email = "";
-  String password = '';
+  bool isLoading = false;
 
-  void _onSignIn() async {
+  void _onSignUp() async {
     if (!_formStateSingIn.currentState!.validate()) {
       return;
     }
-    _formStateSingIn.currentState?.save();
-    final weaterBloc = BlocProvider.of<SigninBloc>(context);
-    weaterBloc.add(SignIn(email: email, password: password));
+    _formStateSingIn.currentState!.save();
+
+    customerModel.name = userName!;
+    customerModel.email = email!;
+
+    final signUpBloc = BlocProvider.of<SignupBloc>(context);
+    signUpBloc.add(SignUp(
+        customerModel: customerModel,
+        email: _emailController.text,
+        password: _passwordEditCotroller.text));
   }
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
-      child: Stack(
-        children: [
-          GestureDetector(
-            onTap: () {
-              FocusScopeNode currentFocus = FocusScope.of(context);
-              if (!currentFocus.hasPrimaryFocus &&
-                  currentFocus.focusedChild != null) {
-                currentFocus.focusedChild?.unfocus();
-              }
-            },
-            child: Scaffold(
-              body: Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(color: Colors.white),
-                child: _body(),
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: () {
+            FocusScopeNode currentFocus = FocusScope.of(context);
+            if (!currentFocus.hasPrimaryFocus &&
+                currentFocus.focusedChild != null) {
+              currentFocus.focusedChild!.unfocus();
+            }
+          },
+          child: Scaffold(
+            body: Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.white,
               ),
+              child: _body(),
             ),
           ),
-        ],
-      ),
+        ),
+        if (isLoading) Center(child: CircularProgressIndicator())
+      ],
     );
   }
 
@@ -89,44 +92,46 @@ class _SignInWidgetState extends State<SignInWidget> {
             ),
             children: [
               Container(
-                margin: EdgeInsets.only(top: 70, left: 25, right: 25),
-                child: Image.asset('assets/images/logo_baguette.png'),
+                  margin: EdgeInsets.only(top: 70, left: 25, right: 25),
+                  child: Image.asset('assets/images/logo_baguette.png'),
+                  decoration: BoxDecoration()),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: CustumInput(
+                  hintText: 'Nick Name',
+                  prefix: Icons.person_outline,
+                  onSaved: (v) => userName = v,
+                  validator: (v) => v!.isEmpty ? "Enter a Nick Name" : null,
+                  controller: _nikNameeditController,
+                  obscureText: false,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: CustumInput(
-                  controller: _emailController,
                   hintText: 'User Email',
                   prefix: Icons.person_outline,
-                  onSaved: (v) => this.email = v!,
+                  onSaved: (v) => email = v,
                   validator: (v) => v!.isEmpty
                       ? "Email is required!"
                       : StringUtils.isEmail(v)
                           ? null
                           : "Invalid email",
+                  controller: _emailController,
                   obscureText: false,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: CustumInput(
-                  controller: _passwordEditCotroller,
                   hintText: "Password",
                   prefix: Icons.lock_outline,
-                  onSaved: (v) => this.password = v!,
+                  onSaved: (v) => password = v,
                   validator: (v) => v!.isEmpty ? "Password is required" : null,
                   obscureText: false,
+                  controller: _passwordEditCotroller,
                 ),
               ),
-              // Container(
-              //   padding: EdgeInsets.all(20),
-              //   width: double.infinity,
-              //   child: Text(
-              //     "Forgot password?",
-              //     textAlign: TextAlign.end,
-              //     style: TextStyle(color: Colors.black),
-              //   ),
-              // ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 40),
                 child: Row(
@@ -135,17 +140,17 @@ class _SignInWidgetState extends State<SignInWidget> {
                   children: [
                     Container(
                       child: Text(
-                        "LOGIN",
+                        'SIGN UP',
                         style: TextStyle(color: AppColors.gold, fontSize: 24),
                       ),
                     ),
                     Container(
                       height: 55,
                       child: CustumButton(
-                        text: "Sign In",
+                        text: "Sign Up",
                         onTap: () {
                           FocusScope.of(context).requestFocus(FocusNode());
-                          _onSignIn();
+                          _onSignUp();
                         },
                       ),
                     ),
@@ -159,7 +164,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                       margin: EdgeInsets.only(
                         top: 20,
                       ),
-                      child: Text("I haven`t got an account")),
+                      child: Text("I have an account")),
                   Container(
                     height: 44,
                     margin: EdgeInsets.only(
@@ -168,11 +173,11 @@ class _SignInWidgetState extends State<SignInWidget> {
                     ),
                     child: TextButton(
                       child: Text(
-                        "Sign Up",
+                        "Sign In",
                         style: TextStyle(color: AppColors.gold),
                       ),
                       onPressed: () {
-                        context.router.push(SignUpPageRoute());
+                        context.router.push(SignInPageRoute());
                       },
                     ),
                   ),
