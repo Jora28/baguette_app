@@ -8,7 +8,6 @@ import 'package:baguette_app/core/widgets/input.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:baguette_app/features/sign_in/presentation/bloc/signin_bloc.dart';
-import 'package:baguette_app/features/sign_up/presentation/widgets/sign_up_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';

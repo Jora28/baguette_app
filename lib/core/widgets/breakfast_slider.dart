@@ -3,7 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class BasicDemo extends StatefulWidget {
-  // List<String> imageList;
   BasicDemo();
   @override
   _BasicDemoState createState() => _BasicDemoState();

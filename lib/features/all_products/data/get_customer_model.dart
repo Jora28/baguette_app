@@ -1,9 +1,10 @@
 
-
 import 'package:baguette_app/features/sign_up/domain/customer.dart';
 
-class CustomerModel extends Customer {
-  CustomerModel({
+class GetCustomerModel extends Customer {
+  
+  
+  GetCustomerModel({
     required String id,
     required String name,
     required String email,
@@ -13,8 +14,8 @@ class CustomerModel extends Customer {
           email: email,
         );
 
-  factory CustomerModel.fromJson(json) {
-    return CustomerModel(
+  factory GetCustomerModel.fromJson(json) {
+    return GetCustomerModel(
       id: json["id"],
       email: json['email'],
       name: json["name"],

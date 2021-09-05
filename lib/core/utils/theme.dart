@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
-import '../typography/text_styles.dart';
 
 const _smallTextScaleFactor = 0.80;
 
