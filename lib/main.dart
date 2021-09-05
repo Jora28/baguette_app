@@ -1,5 +1,4 @@
 import 'package:baguette_app/core/router.gr.dart';
-import 'package:baguette_app/features/sign_in/presentation/pages/sign_in_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

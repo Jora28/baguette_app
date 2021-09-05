@@ -10,18 +10,12 @@ class AuthServise {
     required String email,
     required String password,
   }) async {
-    try {
-      UserCredential res = (await _firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password));
-      if (res.user != null) {
-        print(res.user!.email);
-      } else {
-        print("errroe");
-      }
+    UserCredential res = (await _firebaseAuth.signInWithEmailAndPassword(
+        email: email, password: password));
+    if (res.user == null) {
+      throw FirebaseException;
+    } else {
       return res.user != null;
-    } catch (e) {
-      print(e.toString());
-      return false;
     }
   }
 }

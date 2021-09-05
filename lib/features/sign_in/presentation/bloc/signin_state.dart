@@ -10,7 +10,9 @@ class SigninInitial extends SigninState {}
 
 class SignInRequest extends SigninState {}
 
-class SignInEnded extends SigninState {}
+class SignInEnded extends SigninState {
+ 
+}
 
 class Error extends SigninState {
   final String message;

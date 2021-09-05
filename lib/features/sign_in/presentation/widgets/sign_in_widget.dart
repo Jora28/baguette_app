@@ -30,9 +30,6 @@ class _SignInWidgetState extends State<SignInWidget> {
   String email = "";
   String password = '';
 
-  // Users users;
-  // bool isLoading = false;
-
   void _onSignIn() async {
     if (!_formStateSingIn.currentState!.validate()) {
       return;
@@ -88,9 +85,9 @@ class _SignInWidgetState extends State<SignInWidget> {
             ),
             children: [
               Container(
-                  margin: EdgeInsets.only(top: 70, left: 25, right: 25),
-                  child: Image.asset('assets/images/logo_baguette.png'),
-                  decoration: BoxDecoration()),
+                margin: EdgeInsets.only(top: 70, left: 25, right: 25),
+                child: Image.asset('assets/images/logo_baguette.png'),
+              ),
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: CustumInput(
@@ -119,15 +116,15 @@ class _SignInWidgetState extends State<SignInWidget> {
                   focusNode: FocusNode(),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.all(20),
-                width: double.infinity,
-                child: Text(
-                  "Forgot password?",
-                  textAlign: TextAlign.end,
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
+              // Container(
+              //   padding: EdgeInsets.all(20),
+              //   width: double.infinity,
+              //   child: Text(
+              //     "Forgot password?",
+              //     textAlign: TextAlign.end,
+              //     style: TextStyle(color: Colors.black),
+              //   ),
+              // ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 40),
                 child: Row(
