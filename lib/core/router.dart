@@ -6,16 +6,16 @@ import 'package:baguette_app/features/sign_up/presentation/pages/sign_up_page.da
 @MaterialAutoRouter(routes: <AutoRoute>[
   CustomRoute(
       page: AllProductPage,
-      transitionsBuilder: TransitionsBuilders.slideLeft,
+      //transitionsBuilder: TransitionsBuilders.fadeIn,
       durationInMilliseconds: 500),
   CustomRoute(
       page: SignInPage,
       initial: true,
-      transitionsBuilder: TransitionsBuilders.slideLeft,
+      //transitionsBuilder: TransitionsBuilders.fadeIn,
       durationInMilliseconds: 500),
   CustomRoute(
       page: SignUpPage,
-      transitionsBuilder: TransitionsBuilders.slideLeft,
+      // transitionsBuilder: TransitionsBuilders.fadeIn,
       durationInMilliseconds: 500),
 ])
 class $FlutterRouter {}

@@ -170,6 +170,10 @@ class _SignInWidgetState extends State<SignInWidget> {
                         "Sign Up",
                         style: TextStyle(color: AppColors.gold),
                       ),
+                      style: ButtonStyle(
+                        overlayColor:
+                            MaterialStateProperty.all(Colors.transparent),
+                      ),
                       onPressed: () {
                         context.router.push(SignUpPageRoute());
                       },

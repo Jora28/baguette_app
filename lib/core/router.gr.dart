@@ -23,7 +23,6 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i3.AllProductPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
@@ -32,7 +31,6 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i4.SignInPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false),
@@ -41,7 +39,6 @@ class FlutterRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i5.SignUpPage();
         },
-        transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
         durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false)
