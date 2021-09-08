@@ -4,19 +4,20 @@ import 'package:flutter/material.dart';
 class CategoryCard extends StatelessWidget {
   final String name;
   final String image;
-  CategoryCard({required this.name,required this.image});
+  const CategoryCard({required this.name, required this.image});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        //decoration: BoxDecoration(boxShadow: Shadows.universal),
         child: Container(
           width: 100,
           height: 100,
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color: AppColors.grey,
             borderRadius: BorderRadius.circular(30),
-           // boxShadow: [BoxShadow(offset: Offset(0, 1), color: Colors.grey)],
+            // boxShadow: [BoxShadow(offset: Offset(0, 1), color: Colors.grey)],
           ),
           child: Row(
             children: <Widget>[
@@ -25,7 +26,7 @@ class CategoryCard extends StatelessWidget {
                 height: 100,
                 // padding: EdgeInsets.all(2),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(30),
                       bottomLeft: Radius.circular(30),
                     ),
@@ -33,11 +34,12 @@ class CategoryCard extends StatelessWidget {
                         image: NetworkImage(image), fit: BoxFit.cover)),
               ),
               Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   alignment: Alignment.topLeft,
                   child: Text(
                     name,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 20,
                         fontStyle: FontStyle.italic),

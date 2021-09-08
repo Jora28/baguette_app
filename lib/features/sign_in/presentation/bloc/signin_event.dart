@@ -9,7 +9,7 @@ class SignIn extends SigninEvent {
   final String email;
   final String password;
 
-  SignIn({required this.email, required this.password});
+  const SignIn({required this.email, required this.password});
   @override
   List<Object?> get props => [email, password];
 }

@@ -7,19 +7,18 @@ abstract class AppColors {
 
   // Withe 54%
   static const white54 = Color(0xFFE5E7EC);
-  
+
   //Red
   static const red = Color(0xFFA22752);
 
   // Blue
   static const blue = Color(0xFF006171);
 
-  // Gold 
+  // Gold
   static const gold = Color(0xFFbAA769);
 
   /// Black
   static const Color black = Color(0x8A000000);
-
 
   /// Green
   static const Color green = Color(0xff55B791);
@@ -27,9 +26,8 @@ abstract class AppColors {
   /// Orange
   static const Color orange = Color(0xffFF8A00);
 
-
   /// Grey
-  static const Color grey = Color(0xffD0CACB);
+  static const Color grey = Color(0xFFE5E7EC);
 
   /// Deep grey
   static const Color greyDeep = Color(0xff2E2E2E);

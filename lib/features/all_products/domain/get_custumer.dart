@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class GetCustomer extends Equatable {
-   String id;
-   String name;
-   String email;
+  final String id;
+  final String name;
+  final String email;
 
-  GetCustomer({
+  const GetCustomer({
     required this.id,
     required this.name,
     required this.email,

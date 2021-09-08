@@ -9,8 +9,8 @@ class SignInServise {
     required String email,
     required String password,
   }) async {
-    UserCredential res = (await _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password));
+    final UserCredential res = await _firebaseAuth.signInWithEmailAndPassword(
+        email: email, password: password);
     if (res.user == null) {
       throw FirebaseException;
     } else {

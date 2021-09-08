@@ -5,16 +5,16 @@ class CustumButton extends StatelessWidget {
   final String text;
   final Function() onTap;
 
-  CustumButton({required this.text, required this.onTap});
+  const CustumButton({required this.text, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
           primary: AppColors.blue,
         ),
-        child: Icon(Icons.arrow_forward),
-        onPressed: onTap);
+        onPressed: onTap,
+        child: const Icon(Icons.arrow_forward));
   }
 }

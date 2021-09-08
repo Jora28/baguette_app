@@ -12,7 +12,7 @@ class SignUp extends SignupEvent {
   final String password;
   final CustomerModel customerModel;
 
-  SignUp({
+  const SignUp({
     required this.email,
     required this.password,
     required this.customerModel,

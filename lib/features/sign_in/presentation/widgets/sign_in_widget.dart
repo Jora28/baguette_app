@@ -13,9 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class SignInWidget extends StatefulWidget {
-  static final routeName = 'SingInPage';
-
-  SignInWidget({
+  const SignInWidget({
     Key? key,
   }) : super(key: key);
 
@@ -26,14 +24,14 @@ class SignInWidget extends StatefulWidget {
 class _SignInWidgetState extends State<SignInWidget> {
   final _formStateSingIn = GlobalKey<FormState>();
 
-  TextEditingController _emailController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
-  TextEditingController _passwordEditCotroller = TextEditingController();
+  final TextEditingController _passwordEditCotroller = TextEditingController();
 
-  String email = "";
-  String password = '';
+  String email = "tom@gmail.com";
+  String password = '12345678';
 
-  void _onSignIn() async {
+  dynamic _onSignIn() async {
     if (!_formStateSingIn.currentState!.validate()) {
       return;
     }
@@ -52,7 +50,7 @@ class _SignInWidgetState extends State<SignInWidget> {
         children: [
           GestureDetector(
             onTap: () {
-              FocusScopeNode currentFocus = FocusScope.of(context);
+              final FocusScopeNode currentFocus = FocusScope.of(context);
               if (!currentFocus.hasPrimaryFocus &&
                   currentFocus.focusedChild != null) {
                 currentFocus.focusedChild?.unfocus();
@@ -62,7 +60,7 @@ class _SignInWidgetState extends State<SignInWidget> {
               body: Container(
                 height: double.infinity,
                 width: double.infinity,
-                decoration: BoxDecoration(color: Colors.white),
+                decoration: const BoxDecoration(color: Colors.white),
                 child: _body(),
               ),
             ),
@@ -74,115 +72,111 @@ class _SignInWidgetState extends State<SignInWidget> {
 
   Widget _body() {
     return SingleChildScrollView(
-        child: Container(
-      child: Form(
-        key: _formStateSingIn,
-        child: Column(
-          children: AnimationConfiguration.toStaggeredList(
-            duration: const Duration(milliseconds: 375),
-            childAnimationBuilder: (widget) => SlideAnimation(
-              horizontalOffset: 150.0,
-              child: FadeInAnimation(
-                child: widget,
+        child: Form(
+      key: _formStateSingIn,
+      child: Column(
+        children: AnimationConfiguration.toStaggeredList(
+          duration: const Duration(milliseconds: 375),
+          childAnimationBuilder: (widget) => SlideAnimation(
+            horizontalOffset: 150.0,
+            child: FadeInAnimation(
+              child: widget,
+            ),
+          ),
+          children: [
+            Container(
+              margin: const EdgeInsets.only(top: 70, left: 25, right: 25),
+              child: Image.asset('assets/images/logo_baguette.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: CustumInput(
+                controller: _emailController,
+                hintText: 'User Email',
+                prefix: Icons.person_outline,
+                onSaved: (v) => email = v!,
+                validator: (v) => v!.isEmpty
+                    ? "Email is required!"
+                    : StringUtils.isEmail(v)
+                        ? null
+                        : "Invalid email",
+                obscureText: false,
               ),
             ),
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 70, left: 25, right: 25),
-                child: Image.asset('assets/images/logo_baguette.png'),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: CustumInput(
+                controller: _passwordEditCotroller,
+                hintText: "Password",
+                prefix: Icons.lock_outline,
+                onSaved: (v) => password = v!,
+                validator: (v) => v!.isEmpty ? "Password is required" : null,
+                obscureText: false,
               ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: CustumInput(
-                  controller: _emailController,
-                  hintText: 'User Email',
-                  prefix: Icons.person_outline,
-                  onSaved: (v) => this.email = v!,
-                  validator: (v) => v!.isEmpty
-                      ? "Email is required!"
-                      : StringUtils.isEmail(v)
-                          ? null
-                          : "Invalid email",
-                  obscureText: false,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: CustumInput(
-                  controller: _passwordEditCotroller,
-                  hintText: "Password",
-                  prefix: Icons.lock_outline,
-                  onSaved: (v) => this.password = v!,
-                  validator: (v) => v!.isEmpty ? "Password is required" : null,
-                  obscureText: false,
-                ),
-              ),
-              // Container(
-              //   padding: EdgeInsets.all(20),
-              //   width: double.infinity,
-              //   child: Text(
-              //     "Forgot password?",
-              //     textAlign: TextAlign.end,
-              //     style: TextStyle(color: Colors.black),
-              //   ),
-              // ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 40),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      child: Text(
-                        "LOGIN",
-                        style: TextStyle(color: AppColors.gold, fontSize: 24),
-                      ),
-                    ),
-                    Container(
-                      height: 55,
-                      child: CustumButton(
-                        text: "Sign In",
-                        onTap: () {
-                          FocusScope.of(context).requestFocus(FocusNode());
-                          _onSignIn();
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+            ),
+            // Container(
+            //   padding: EdgeInsets.all(20),
+            //   width: double.infinity,
+            //   child: Text(
+            //     "Forgot password?",
+            //     textAlign: TextAlign.end,
+            //     style: TextStyle(color: Colors.black),
+            //   ),
+            // ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 40),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        top: 20,
-                      ),
-                      child: Text("I haven`t got an account")),
-                  Container(
-                    height: 44,
-                    margin: EdgeInsets.only(
-                      top: 20,
-                      left: 5,
-                    ),
-                    child: TextButton(
-                      child: Text(
-                        "Sign Up",
-                        style: TextStyle(color: AppColors.gold),
-                      ),
-                      style: ButtonStyle(
-                        overlayColor:
-                            MaterialStateProperty.all(Colors.transparent),
-                      ),
-                      onPressed: () {
-                        context.router.push(SignUpPageRoute());
+                  const Text(
+                    "LOGIN",
+                    style: TextStyle(color: AppColors.gold, fontSize: 24),
+                  ),
+                  SizedBox(
+                    height: 55,
+                    child: CustumButton(
+                      text: "Sign In",
+                      onTap: () {
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        _onSignIn();
                       },
                     ),
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    margin: const EdgeInsets.only(
+                      top: 20,
+                    ),
+                    child: const Text("I haven`t got an account")),
+                Container(
+                  height: 44,
+                  margin: const EdgeInsets.only(
+                    top: 20,
+                    left: 5,
+                  ),
+                  child: TextButton(
+                    style: ButtonStyle(
+                      overlayColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                    ),
+                    onPressed: () {
+                      context.router.push(const SignUpPageRoute());
+                    },
+                    child: const Text(
+                      "Sign Up",
+                      style: TextStyle(color: AppColors.gold),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     ));

@@ -10,11 +10,11 @@ class CategoryModel extends Categories {
     required this.image,
   }) : super(id: id, name: name, image: image);
 
-  factory CategoryModel.fromJson(dynamic json) {
+  factory CategoryModel.fromJson(json) {
     return CategoryModel(
-      id: json['id'],
-      name: json['name'],
-      image: json['image'],
+      id: json['id'] as String,
+      name: json['name'] as String,
+      image: json['image'] as String,
     );
   }
 }

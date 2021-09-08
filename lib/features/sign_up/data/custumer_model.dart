@@ -1,5 +1,3 @@
-
-
 import 'package:baguette_app/features/sign_up/domain/customer.dart';
 
 class CustomerModel extends Customer {
@@ -15,18 +13,18 @@ class CustomerModel extends Customer {
 
   factory CustomerModel.fromJson(json) {
     return CustomerModel(
-      id: json["id"],
-      email: json['email'],
-      name: json["name"],
+      id: json["id"] as String,
+      email: json['email'] as String,
+      name: json["name"] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
-    var data = Map<String, dynamic>();
+    final data = <String, dynamic>{};
 
-    data['email'] = this.email;
-    data['name'] = this.name;
-    data['id'] = this.id;
+    data['email'] = email;
+    data['name'] = name;
+    data['id'] = id;
 
     return data;
   }

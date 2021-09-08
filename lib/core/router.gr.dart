@@ -9,6 +9,7 @@ import 'package:flutter/material.dart' as _i2;
 
 import '../features/all_products/presentation/pages/all_product_page.dart'
     as _i3;
+import '../features/home/presentation/pages/home_page.dart' as _i6;
 import '../features/sign_in/presentation/pages/sign_in_page.dart' as _i4;
 import '../features/sign_up/presentation/pages/sign_up_page.dart' as _i5;
 
@@ -41,6 +42,16 @@ class FlutterRouter extends _i1.RootStackRouter {
         },
         durationInMilliseconds: 500,
         opaque: true,
+        barrierDismissible: false),
+    HomePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<HomePageRouteArgs>(
+              orElse: () => const HomePageRouteArgs());
+          return _i6.HomePage(key: args.key);
+        },
+        durationInMilliseconds: 500,
+        opaque: true,
         barrierDismissible: false)
   };
 
@@ -48,7 +59,8 @@ class FlutterRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(AllProductPageRoute.name, path: '/all-product-page'),
         _i1.RouteConfig(SignInPageRoute.name, path: '/'),
-        _i1.RouteConfig(SignUpPageRoute.name, path: '/sign-up-page')
+        _i1.RouteConfig(SignUpPageRoute.name, path: '/sign-up-page'),
+        _i1.RouteConfig(HomePageRoute.name, path: '/home-page')
       ];
 }
 
@@ -68,4 +80,17 @@ class SignUpPageRoute extends _i1.PageRouteInfo {
   const SignUpPageRoute() : super(name, path: '/sign-up-page');
 
   static const String name = 'SignUpPageRoute';
+}
+
+class HomePageRoute extends _i1.PageRouteInfo<HomePageRouteArgs> {
+  HomePageRoute({_i2.Key? key})
+      : super(name, path: '/home-page', args: HomePageRouteArgs(key: key));
+
+  static const String name = 'HomePageRoute';
+}
+
+class HomePageRouteArgs {
+  const HomePageRouteArgs({this.key});
+
+  final _i2.Key? key;
 }

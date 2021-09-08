@@ -11,15 +11,16 @@ class RegisterServise {
     required String password,
   }) async {
     try {
-      var res = (await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password));
+      final res = await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
       return res.user != null;
     } catch (e) {
       print(e.toString());
       return false;
     }
   }
-    Future upDateUser({required CustomerModel model}) async {
+
+  Future upDateUser({required CustomerModel model}) async {
     model.id = _firebaseAuth.currentUser!.uid;
     try {
       await store

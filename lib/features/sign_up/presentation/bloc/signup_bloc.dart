@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:baguette_app/core/router.gr.dart';
-import 'package:baguette_app/core/widgets/show_toast.dart';
 import 'package:baguette_app/features/sign_up/data/custumer_model.dart';
 import 'package:baguette_app/features/sign_up/data/data_sourse.dart';
 import 'package:bloc/bloc.dart';
@@ -34,9 +33,9 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         );
         await registerServise.upDateUser(model: event.customerModel);
         yield SignUpEnded();
-        context.router.push(AllProductPageRoute());
+        context.router.push(const AllProductPageRoute());
       } on FirebaseException {
-        yield SignUpError(message: "message");
+        yield const SignUpError(message: "message");
       }
     }
   }

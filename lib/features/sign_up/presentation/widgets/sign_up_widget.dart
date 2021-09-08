@@ -11,9 +11,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:auto_route/auto_route.dart';
 
 class SignUpWidget extends StatefulWidget {
-  static final routeName = 'SingUpPage';
-
-  SignUpWidget({Key? key}) : super(key: key);
+  const SignUpWidget({Key? key}) : super(key: key);
 
   @override
   _SignUpWidgetState createState() => _SignUpWidgetState();
@@ -25,14 +23,14 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   String? email;
   String? userName;
   CustomerModel customerModel = CustomerModel(email: '', id: '', name: '');
-  TextEditingController _emailController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
-  TextEditingController _passwordEditCotroller = TextEditingController();
-  TextEditingController _nikNameeditController = TextEditingController();
+  final TextEditingController _passwordEditCotroller = TextEditingController();
+  final TextEditingController _nikNameeditController = TextEditingController();
 
   bool isLoading = false;
 
-  void _onSignUp() async {
+  dynamic _onSignUp() async {
     if (!_formStateSingIn.currentState!.validate()) {
       return;
     }
@@ -54,7 +52,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       children: [
         GestureDetector(
           onTap: () {
-            FocusScopeNode currentFocus = FocusScope.of(context);
+            final FocusScopeNode currentFocus = FocusScope.of(context);
             if (!currentFocus.hasPrimaryFocus &&
                 currentFocus.focusedChild != null) {
               currentFocus.focusedChild!.unfocus();
@@ -64,21 +62,21 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             body: Container(
               height: double.infinity,
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
               ),
               child: _body(),
             ),
           ),
         ),
-        if (isLoading) Center(child: CircularProgressIndicator())
+        if (isLoading) const Center(child: CircularProgressIndicator())
       ],
     );
   }
 
   Widget _body() {
     return SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
       child: Form(
         key: _formStateSingIn,
         child: Column(
@@ -92,9 +90,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             ),
             children: [
               Container(
-                  margin: EdgeInsets.only(top: 70, left: 25, right: 25),
-                  child: Image.asset('assets/images/logo_baguette.png'),
-                  decoration: BoxDecoration()),
+                  margin: const EdgeInsets.only(top: 70, left: 25, right: 25),
+                  child: Image.asset('assets/images/logo_baguette.png')),
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: CustumInput(
@@ -133,18 +130,18 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 40),
+                margin: const EdgeInsets.symmetric(horizontal: 40),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
+                    const SizedBox(
                       child: Text(
                         'SIGN UP',
                         style: TextStyle(color: AppColors.gold, fontSize: 24),
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: 55,
                       child: CustumButton(
                         text: "Sign Up",
@@ -161,24 +158,24 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                         top: 20,
                       ),
-                      child: Text("I have an account")),
+                      child: const Text("I have an account")),
                   Container(
                     height: 44,
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       top: 20,
                       left: 5,
                     ),
                     child: TextButton(
-                      child: Text(
+                      onPressed: () {
+                        context.router.push(const SignInPageRoute());
+                      },
+                      child: const Text(
                         "Sign In",
                         style: TextStyle(color: AppColors.gold),
                       ),
-                      onPressed: () {
-                        context.router.push(SignInPageRoute());
-                      },
                     ),
                   ),
                 ],

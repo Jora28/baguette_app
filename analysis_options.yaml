@@ -1,0 +1,10 @@
+include: package:lint/analysis_options.yaml
+
+linter:
+  rules:
+    avoid_classes_with_only_static_members: false
+    prefer_constructors_over_static_methods: false
+    avoid_redundant_argument_values: false
+    constant_identifier_names: false
+    sort_pub_dependencies: false
+    

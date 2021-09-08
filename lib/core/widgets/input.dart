@@ -8,7 +8,7 @@ class CustumInput extends StatelessWidget {
   final FormFieldValidator<String> validator;
   final TextEditingController controller;
   final bool obscureText;
-  CustumInput({
+  const CustumInput({
     required this.hintText,
     required this.prefix,
     required this.onSaved,
@@ -19,23 +19,23 @@ class CustumInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: TextFormField(
         validator: validator,
         onSaved: onSaved,
         controller: controller,
         obscureText: obscureText,
-        style: TextStyle(fontSize: 20, color: Colors.black),
+        style: const TextStyle(fontSize: 20, color: Colors.black),
         decoration: InputDecoration(
-          border: UnderlineInputBorder(
+          border: const UnderlineInputBorder(
               borderSide: BorderSide(color: AppColors.blue, width: 1)),
           isDense: true,
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
               fontWeight: FontWeight.normal,
               fontSize: 20,
               color: AppColors.blue),
           hintText: hintText,
-          focusedBorder: UnderlineInputBorder(
+          focusedBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: AppColors.blue, width: 1)),
           enabledBorder: UnderlineInputBorder(
               borderSide:

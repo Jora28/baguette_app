@@ -15,6 +15,7 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   final SignInServise authServise = SignInServise();
+  bool absorbing = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,17 +28,24 @@ class _SignInPageState extends State<SignInPage> {
           listener: (context, state) {
             if (state is Error) {
               showToast(context);
+            } else if (state is SignInRequest) {
+              absorbing = true;
+            } else {
+              absorbing = false;
             }
           },
           builder: (BuildContext context, state) {
-            return Stack(
-              children: [
-                SignInWidget(),
-                if (state is SigninInitial)
-                  SignInWidget()
-                else if (state is SignInRequest)
-                  LoadingWidget()
-              ],
+            return AbsorbPointer(
+              absorbing: absorbing,
+              child: Stack(
+                children: [
+                  const SignInWidget(),
+                  if (state is SigninInitial)
+                    const SignInWidget()
+                  else if (state is SignInRequest)
+                    const LoadingWidget()
+                ],
+              ),
             );
           },
         ),

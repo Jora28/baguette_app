@@ -9,16 +9,14 @@ abstract class CategoryblocState extends Equatable {
 
 class CategoryblocInitial extends CategoryblocState {}
 
-class CategoryLoading extends CategoryblocState {
-  
-}
+class CategoryLoading extends CategoryblocState {}
 
 class CategoryError extends CategoryblocState {}
 
 class CategoryLoaded extends CategoryblocState {
   final List<CategoryModel> listCategoryModel;
   final GetCustomerModel customerModel;
-  CategoryLoaded({
+  const CategoryLoaded({
     required this.listCategoryModel,
     required this.customerModel,
   });

@@ -24,9 +24,10 @@ class CategoryblocBloc extends Bloc<CategoryblocEvent, CategoryblocState> {
     if (event is GetCategory) {
       try {
         yield CategoryLoading();
-        List<CategoryModel> listCategory =
+        final List<CategoryModel> listCategory =
             await getCategorySevise.getCategories();
-        GetCustomerModel customerModel = await getCustomerServise.getUserData();
+        final GetCustomerModel customerModel =
+            await getCustomerServise.getUserData();
         yield CategoryLoaded(
           listCategoryModel: listCategory,
           customerModel: customerModel,

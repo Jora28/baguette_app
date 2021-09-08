@@ -25,17 +25,17 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         child: BlocConsumer<SignupBloc, SignupState>(
           listener: (context, state) {
-            if(state is SignUpError){
-               showToast(context);
+            if (state is SignUpError) {
+              showToast(context);
             }
           },
           builder: (context, state) {
             return Stack(
               children: [
                 if (state is SignupInitial)
-                  SignUpWidget()
+                  const SignUpWidget()
                 else if (state is SignUpRequest)
-                  LoadingWidget()
+                  const LoadingWidget()
               ],
             );
           },

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
-const _smallTextScaleFactor = 0.80;
-
 /// Namespace for the History of Adventures [ThemeData].
 class DefaultTheme {
   /// Standard `ThemeData` for History of Adventures UI.
@@ -38,7 +36,7 @@ class DefaultTheme {
   }
 
   static TextTheme get _textTheme {
-    return TextTheme(
+    return const TextTheme(
         // headline1: AppTextStyle.headline1,
         // headline2: AppTextStyle.headline2,
         // headline3: AppTextStyle.headline3,
@@ -56,7 +54,7 @@ class DefaultTheme {
   }
 
   static TextTheme get _smallTextTheme {
-    return TextTheme(
+    return const TextTheme(
         // headline1: AppTextStyle.headline1.copyWith(
         //   fontSize: _textTheme.headline1!.fontSize! * _smallTextScaleFactor,
         // ),

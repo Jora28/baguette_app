@@ -4,11 +4,7 @@ import 'package:baguette_app/core/widgets/breakfast_slider.dart';
 import 'package:baguette_app/core/widgets/category_card.dart';
 import 'package:baguette_app/features/all_products/data/category_model.dart';
 import 'package:baguette_app/features/all_products/data/get_customer_model.dart';
-import 'package:baguette_app/features/all_products/domain/category.dart';
-import 'package:baguette_app/features/all_products/presentation/bloc/categorybloc_bloc.dart';
-import 'package:baguette_app/features/sign_up/data/custumer_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -36,22 +32,21 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
   // String email;
   // String password;
 
-  void getUserSecurety() async {
-    // var getEmail = await UserSecureStorage().getEmail();
-    // var getPassword = await UserSecureStorage().getPassword();
-    // Users user = await Api().authServise.getUserData();
-    // if (mounted)
-    //   setState(() {
-    //     email = getEmail;
-    //     password = getPassword;
-    //     users = user;
-    //   });
-  }
-
+  // void getUserSecurety() async {
+  //   // var getEmail = await UserSecureStorage().getEmail();
+  //   // var getPassword = await UserSecureStorage().getPassword();
+  //   // Users user = await Api().authServise.getUserData();
+  //   // if (mounted)
+  //   //   setState(() {
+  //   //     email = getEmail;
+  //   //     password = getPassword;
+  //   //     users = user;
+  //   //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
     screenHeight = size.height;
     screenWidth = size.width;
     return Stack(
@@ -89,8 +84,9 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
               children: [
                 _appBar(),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Text(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: const Text(
                     "BreakFast",
                     style: TextStyle(
                         color: AppColors.gold,
@@ -98,10 +94,11 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
                         fontWeight: FontWeight.w600),
                   ),
                 ),
-                BasicDemo(),
+                const BreakfastSliderWidget(),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Text(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: const Text(
                     "All Products",
                     style: TextStyle(
                         color: AppColors.gold,
@@ -110,15 +107,15 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 10),
+                  child: SizedBox(
                       child: ListView.builder(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
                           itemCount: widget.listCategory.length,
                           itemBuilder: (context, index) {
-                            var data = widget.listCategory[index];
+                            final data = widget.listCategory[index];
                             return AnimationConfiguration.staggeredList(
                               position: index,
-                              duration: Duration(milliseconds: 500),
+                              duration: const Duration(milliseconds: 500),
                               child: SlideAnimation(
                                 horizontalOffset: 400,
                                 child: GestureDetector(
@@ -151,33 +148,34 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
       alignment: Alignment.centerLeft,
       child: Container(
         width: MediaQuery.of(context).size.width * 0.5,
-        margin: EdgeInsets.symmetric(vertical: 50),
+        margin: const EdgeInsets.symmetric(vertical: 50),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.only(top: 100),
+              margin: const EdgeInsets.only(top: 100),
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                       child: Row(
                     children: [
                       Container(
-                          padding: EdgeInsets.all(8),
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage("assets/images/baguette.png"),
+                          padding: const EdgeInsets.all(8),
+                          child: const CircleAvatar(
+                            backgroundImage:
+                                AssetImage("assets/images/baguette.png"),
                           )),
-                      Container(
+                      SizedBox(
                           child: Text(widget.getCustomerModel.name,
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 14)))
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 14)))
                     ],
                   )),
                   Container(
-                      margin: EdgeInsets.only(left: 15, top: 10),
+                      margin: const EdgeInsets.only(left: 15, top: 10),
                       child: Row(
                         children: [
-                          Container(
+                          const SizedBox(
                               child: Icon(
                             Icons.email_outlined,
                             color: Colors.black,
@@ -185,10 +183,10 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
                           )),
                           Flexible(
                             child: Container(
-                              padding: EdgeInsets.only(left: 8),
+                              padding: const EdgeInsets.only(left: 8),
                               child: Text(
                                 widget.getCustomerModel.email,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black, fontSize: 14),
                                 maxLines: 2,
                               ),
@@ -202,7 +200,7 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
+                SizedBox(
                     child: Column(
                   children: [
                     InkWell(
@@ -211,33 +209,33 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
                         //     builder: (context) => SettingPage()));
                       },
                       child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          child: Icon(
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
+                          child: const Icon(
                             Icons.settings,
                             color: Colors.black,
                             size: 25,
                           )),
                     ),
-                    Text("Settings",
+                    const Text("Settings",
                         style: TextStyle(color: Colors.black, fontSize: 14)),
                   ],
                 )),
                 InkWell(
                   onTap: () async {
                     // await AuthServise().logout();
-                    context.router.push(SignInPageRoute());
+                    context.router.push(const SignInPageRoute());
                   },
-                  child: Container(
+                  child: SizedBox(
                       child: Column(
                     children: [
                       Container(
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          child: Icon(
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
+                          child: const Icon(
                             Icons.logout,
                             color: Colors.black,
                             size: 25,
                           )),
-                      Text("Log out",
+                      const Text("Log out",
                           style: TextStyle(color: Colors.black, fontSize: 14)),
                     ],
                   )),
@@ -251,12 +249,12 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
   }
 
   Widget _appBar() {
-    return Container(
+    return SizedBox(
       child: Row(
         children: [
-          Container(
+          SizedBox(
             child: IconButton(
-              icon: Icon(Icons.menu),
+              icon: const Icon(Icons.menu),
               onPressed: () {
                 setState(() {
                   _isSideMenuOpen = !_isSideMenuOpen;
@@ -264,11 +262,10 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
               },
             ),
           ),
-          Container(
-              child: Text(
+          const Text(
             "Baguette & Co.",
             style: TextStyle(fontSize: 18),
-          )),
+          ),
         ],
       ),
     );

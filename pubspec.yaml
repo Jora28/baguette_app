@@ -12,9 +12,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  auto_route: ^2.3.0
   cupertino_icons: ^1.0.2
   intl: ^0.17.0
-  auto_route: ^2.3.0
+ 
   flutter_bloc: ^7.1.0
   equatable: ^2.0.3
   firebase_core: ^1.5.0
@@ -23,9 +24,10 @@ dependencies:
   cloud_firestore: ^2.5.0
   animations: ^2.0.0
   flutter_staggered_animations: "^1.0.0"
-  curved_navigation_bar: ^0.3.4
+  curved_navigation_bar: ^1.0.1
   fluttertoast: ^8.0.8
   carousel_slider: ^4.0.0
+  lint: ^1.5.3
 
 
 
