@@ -1,14 +1,15 @@
 import 'package:baguette_app/features/all_products/domain/category.dart';
 
 class CategoryModel extends Categories {
-  String id;
-  String image;
-  String name;
-  CategoryModel({
-    required this.id,
-    required this.name,
-    required this.image,
-  }) : super(id: id, name: name, image: image);
+  const CategoryModel({
+    required String id,
+    required String name,
+    required String image,
+  }) : super(
+          id: id,
+          name: name,
+          image: image,
+        );
 
   factory CategoryModel.fromJson(json) {
     return CategoryModel(

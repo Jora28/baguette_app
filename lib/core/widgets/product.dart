@@ -6,12 +6,12 @@ class ProductItem extends StatefulWidget {
   final String image;
   final int price;
   final Icon icon;
-  int? count;
+  final int count;
   final Function() onSave;
   final Function() onP;
   final Function() onM;
 
-  ProductItem({
+  const ProductItem({
     required this.image,
     required this.onM,
     required this.onP,

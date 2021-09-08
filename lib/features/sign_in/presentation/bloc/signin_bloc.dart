@@ -32,7 +32,7 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
         await authServise.singInWithEmailAndPassword(
             email: event.email, password: event.password);
         yield SignInEnded();
-        context.router.push(HomePageRoute());
+        context.router.push(const HomePageRoute());
       } on FirebaseException {
         yield const Error(message: 'Your email/passwor is wrong');
       }

@@ -21,22 +21,25 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: AppColors.white,
         body: _body(),
-        bottomNavigationBar: CurvedNavigationBar(
-            backgroundColor: AppColors.white,
-            items: const [
-              Icon(Icons.info, color: AppColors.white),
-              Icon(Icons.home, color: AppColors.white),
-              Icon(Icons.shopping_cart, color: AppColors.white),
-            ],
-            index: 1,
-            height: 50,
-            color: AppColors.blue,
-            buttonBackgroundColor: AppColors.blue,
-            animationDuration: const Duration(milliseconds: 200),
-            animationCurve: Curves.bounceInOut,
-            onTap: (int index) {
-              setState(() => sectionIndex = index);
-            }),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: CurvedNavigationBar(
+              backgroundColor: AppColors.white,
+              items: const [
+                Icon(Icons.info, color: AppColors.white),
+                Icon(Icons.home, color: AppColors.white),
+                Icon(Icons.shopping_cart, color: AppColors.white),
+              ],
+              index: 1,
+              height: 50,
+              color: AppColors.blue,
+              buttonBackgroundColor: AppColors.blue,
+              animationDuration: const Duration(milliseconds: 200),
+              animationCurve: Curves.bounceInOut,
+              onTap: (int index) {
+                setState(() => sectionIndex = index);
+              }),
+        ),
       ),
     );
   }

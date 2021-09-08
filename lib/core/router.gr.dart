@@ -45,10 +45,8 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     HomePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<HomePageRouteArgs>(
-              orElse: () => const HomePageRouteArgs());
-          return _i6.HomePage(key: args.key);
+        builder: (_) {
+          return const _i6.HomePage();
         },
         durationInMilliseconds: 500,
         opaque: true,
@@ -82,15 +80,8 @@ class SignUpPageRoute extends _i1.PageRouteInfo {
   static const String name = 'SignUpPageRoute';
 }
 
-class HomePageRoute extends _i1.PageRouteInfo<HomePageRouteArgs> {
-  HomePageRoute({_i2.Key? key})
-      : super(name, path: '/home-page', args: HomePageRouteArgs(key: key));
+class HomePageRoute extends _i1.PageRouteInfo {
+  const HomePageRoute() : super(name, path: '/home-page');
 
   static const String name = 'HomePageRoute';
-}
-
-class HomePageRouteArgs {
-  const HomePageRouteArgs({this.key});
-
-  final _i2.Key? key;
 }
