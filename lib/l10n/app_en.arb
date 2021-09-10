@@ -1,5 +1,9 @@
 {
-    "helloWorld": "Hello World!",
+    "settings": "Settings",
+    "@helloWorld": {
+      "description": "The conventional newborn programmer greeting"
+    },
+    "mode": "Mode",
     "@helloWorld": {
       "description": "The conventional newborn programmer greeting"
     },

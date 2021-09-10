@@ -1,7 +1,13 @@
+import 'package:baguette_app/core/localization/bloc/localization_bloc.dart';
 import 'package:baguette_app/core/router.gr.dart';
+import 'package:baguette_app/core/theme/bloc/theme_bloc.dart';
+import 'package:baguette_app/l10n/l10n.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/localizations.dart';
 
 dynamic main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,14 +26,38 @@ class BaguetteApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Baguette & Co.',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LocalizationBloc>(
+          create: (BuildContext context) => LocalizationBloc(),
+        ),
+        BlocProvider<ThemeBloc>(
+          create: (BuildContext context) => ThemeBloc(),
+        ),
+      ],
+      child: BlocBuilder<LocalizationBloc, LocalizationState>(
+        builder: (context, localizationState) {
+          return BlocBuilder<ThemeBloc, ThemeState>(
+            builder: (context, themeState) {
+              return MaterialApp.router(
+                title: 'Baguette & Co.',
+                theme: themeState.themeData,
+                locale: localizationState.locale,
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate
+                ],
+                supportedLocales: BaguetteLocalization().localization.values,
+                routerDelegate: _appRouter.delegate(),
+                routeInformationParser: _appRouter.defaultRouteParser(),
+                debugShowCheckedModeBanner: false,
+              );
+            },
+          );
+        },
       ),
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
-      debugShowCheckedModeBanner: false,
     );
   }
 }

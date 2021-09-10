@@ -4,6 +4,7 @@ import 'package:baguette_app/core/widgets/breakfast_slider.dart';
 import 'package:baguette_app/core/widgets/category_card.dart';
 import 'package:baguette_app/features/all_products/data/category_model.dart';
 import 'package:baguette_app/features/all_products/data/get_customer_model.dart';
+import 'package:baguette_app/features/all_products/presentation/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:auto_route/auto_route.dart';
@@ -205,8 +206,8 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
                   children: [
                     InkWell(
                       onTap: () {
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (context) => SettingPage()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => SettingPage()));
                       },
                       child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 10),

@@ -1,0 +1,10 @@
+{
+    "settings": "Настройки",
+    "@settings": {
+      "description": "The conventional newborn programmer greeting"
+    },
+    "mode": "Tема",
+    "@helloWorld": {
+      "description": "The conventional newborn programmer greeting"
+    }
+}
