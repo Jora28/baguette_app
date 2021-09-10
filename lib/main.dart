@@ -3,7 +3,6 @@ import 'package:baguette_app/core/localization/l10n/l10n.dart';
 import 'package:baguette_app/core/router.gr.dart';
 import 'package:baguette_app/core/theme/bloc/theme_bloc.dart';
 import 'package:baguette_app/features/basket/presentation/bloc/basket_bloc.dart';
-import 'package:baguette_app/features/categories/data/data_sourse.dart';
 import 'package:baguette_app/features/categories/presentation/bloc/categorybloc_bloc.dart';
 import 'package:baguette_app/features/products/presentation/bloc/product_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';

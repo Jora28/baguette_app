@@ -1,9 +1,12 @@
 import 'dart:async';
+import 'dart:math';
 
-import 'package:baguette_app/core/widgets/loading.dart';
 import 'package:baguette_app/features/basket/data/basket_servise.dart';
+import 'package:baguette_app/features/basket/data/order_model.dart';
+import 'package:baguette_app/features/products/data/basket_product_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 part 'basket_event.dart';
 part 'basket_state.dart';
@@ -19,8 +22,15 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
       event.basketServise.deleteProductFromBasket(id: event.productId);
     } else if (event is GetproductsFromBasket) {
       yield BasketProductsLoading();
-      final listProductsFromBasket =
-          event.basketServise.getBasketProducts(event.id);
+      final List<BasketProductModel> listProductsFromBasket =
+          await event.basketServise.getBasketProducts(event.id);
+      yield BasketProductsLoaded(listBasketProducts: listProductsFromBasket);
+    }
+    else if(event is AddOrder){
+      yield BasketProductsLoading();
+      await event.basketServise.addOrder(event.orderModel);
+      await event.basketServise.deleteProductFromBasket(id: FirebaseAuth.instance.currentUser!.uid);
+      yield OrderSended();
     }
   }
 }

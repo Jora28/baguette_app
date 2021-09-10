@@ -26,7 +26,7 @@ class _SignUpPageState extends State<SignUpPage> {
         child: BlocConsumer<SignupBloc, SignupState>(
           listener: (context, state) {
             if (state is SignUpError) {
-              showToast(context);
+              showToast(context, 'Your email/passwor is wrong');
             }
           },
           builder: (context, state) {

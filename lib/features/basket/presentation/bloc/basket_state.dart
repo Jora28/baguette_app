@@ -11,4 +11,10 @@ class BasketInitial extends BasketState {}
 
 class BasketProductsLoading extends BasketState {}
 
-class BasketProductsLoaded extends BasketState {}
+class BasketProductsLoaded extends BasketState {
+  final List<BasketProductModel> listBasketProducts;
+
+  const BasketProductsLoaded({required this.listBasketProducts});
+}
+
+class OrderSended extends BasketState {}

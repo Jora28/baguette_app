@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Product extends Equatable {
-  String id;
+  final String id;
   final String name;
   final String image;
   final int price;

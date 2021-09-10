@@ -1,4 +1,5 @@
 import 'package:baguette_app/core/utils/colors.dart';
+import 'package:baguette_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -15,16 +16,16 @@ class CategoryCard extends StatelessWidget {
           width: 100,
           height: 100,
           decoration: BoxDecoration(
-            color: AppColors.grey,
-            borderRadius: BorderRadius.circular(30),
-            // boxShadow: [BoxShadow(offset: Offset(0, 1), color: Colors.grey)],
-          ),
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(30),
+              boxShadow: Shadows.universal
+              // boxShadow: [BoxShadow(offset: Offset(0, 1), color: Colors.grey)],
+              ),
           child: Row(
             children: <Widget>[
               Container(
                 width: 100,
                 height: 100,
-                // padding: EdgeInsets.all(2),
                 decoration: BoxDecoration(
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(30),

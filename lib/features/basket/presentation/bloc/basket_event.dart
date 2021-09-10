@@ -31,3 +31,16 @@ class GetproductsFromBasket extends BasketEvent {
   @override
   List<Object> get props => [basketServise, id];
 }
+
+class AddOrder extends BasketEvent {
+  final OrderModel orderModel;
+  final BasketServise basketServise;
+
+  const AddOrder({
+    required this.orderModel,
+    required this.basketServise,
+  });
+
+  @override
+  List<Object> get props => [orderModel];
+}

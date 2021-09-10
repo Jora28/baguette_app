@@ -27,7 +27,7 @@ class _SignInPageState extends State<SignInPage> {
         child: BlocConsumer<SigninBloc, SigninState>(
           listener: (context, state) {
             if (state is Error) {
-              showToast(context);
+              showToast(context, 'Your email/passwor is wrong');
               absorbing = false;
             } else if (state is SignInRequest) {
               absorbing = true;

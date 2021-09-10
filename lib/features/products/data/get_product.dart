@@ -19,7 +19,7 @@ class GetProductsServise {
 class AddProductsToBasketServise {
   final CollectionReference basketUser =
       FirebaseFirestore.instance.collection('basket');
-  Future upDateBasket(ProductModel product) {
+  Future upDateBasket(ProductModel product) async{
     final String? res = FirebaseAuth.instance.currentUser?.uid;
     final BasketProductModel basketProductModel = BasketProductModel(
         id: product.id,
@@ -30,7 +30,6 @@ class AddProductsToBasketServise {
         price: product.price,
         ownerId: res!);
 
-    product.id = res + DateTime.now().toString();
-    return basketUser.doc(product.id).set(basketProductModel.toJson());
+     await basketUser.doc(res).set(basketProductModel.toJson());
   }
 }

@@ -1,4 +1,5 @@
 import 'package:baguette_app/core/utils/colors.dart';
+import 'package:baguette_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class ProductItem extends StatefulWidget {
@@ -33,7 +34,8 @@ class _ProductItemState extends State<ProductItem> {
         child: Container(
           height: 100,
           decoration: BoxDecoration(
-            color: AppColors.grey,
+            color: AppColors.white,
+            boxShadow: Shadows.universal,
             borderRadius: BorderRadius.circular(30),
           ),
           child: Row(
