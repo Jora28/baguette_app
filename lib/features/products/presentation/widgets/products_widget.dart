@@ -1,9 +1,12 @@
+import 'package:baguette_app/core/router.gr.dart';
 import 'package:baguette_app/core/utils/colors.dart';
 import 'package:baguette_app/core/widgets/product.dart';
+import 'package:baguette_app/features/basket/presentation/pages/basket_page.dart';
 import 'package:baguette_app/features/products/data/get_product.dart';
 import 'package:baguette_app/features/products/data/product_model.dart';
 import 'package:baguette_app/features/products/domain/product.dart';
 import 'package:baguette_app/features/products/presentation/bloc/product_bloc.dart';
+import 'package:auto_route/auto_route.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,10 +78,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                 color: Colors.black,
               ),
               onPressed: () {
-                // Navigator.of(context).push(MaterialPageRoute(
-                //     builder: (context) => ProductsInBasket(
-                //           navigateFromProductPage: true,
-                //         )));
+                context.router.push(const BasketPageRoute());
               },
             ),
           ),

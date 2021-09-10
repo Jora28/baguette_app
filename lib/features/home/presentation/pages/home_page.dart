@@ -1,5 +1,5 @@
 import 'package:baguette_app/core/utils/colors.dart';
-import 'package:baguette_app/features/basket/presentation/basket_page.dart';
+import 'package:baguette_app/features/basket/presentation/pages/basket_page.dart';
 import 'package:baguette_app/features/categories/presentation/pages/category_page.dart';
 import 'package:baguette_app/features/information/presentation/info_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
