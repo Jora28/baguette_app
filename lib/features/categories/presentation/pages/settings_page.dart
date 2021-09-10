@@ -8,18 +8,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 
 class SettingPage extends StatefulWidget {
-  SettingPage({Key? key}) : super(key: key);
+  const SettingPage({Key? key}) : super(key: key);
 
   @override
   _SettingPageState createState() => _SettingPageState();
 }
 
 class _SettingPageState extends State<SettingPage> {
-  //late LocalProvider localeManagment;
-
-  // bool _value = true;
   String? dropdownvalue = "English";
-  // bool islight = false;
 
   late ThemeBloc themeBloc;
   late LocalizationBloc localizationBloc;
@@ -29,13 +25,6 @@ class _SettingPageState extends State<SettingPage> {
     "Русский",
     "English",
   ];
-
-  @override
-  void initState() {
-    //localeManagment = Provider.of<LocalProvider>(context, listen: false);
-    super.initState();
-  }
-
   @override
   void didChangeDependencies() {
     themeBloc = BlocProvider.of<ThemeBloc>(context);
@@ -46,41 +35,12 @@ class _SettingPageState extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("object");
     return Scaffold(
       appBar: AppBar(
         title: Text(locale.settings),
       ),
       body: _body(),
     );
-  }
-
-  Widget _appBar() {
-    return PreferredSize(
-        preferredSize: Size.fromHeight(60),
-        child: Container(
-            padding: const EdgeInsets.only(left: 15, right: 15, top: 42),
-            decoration: const BoxDecoration(color: Colors.black),
-            child: Column(children: [
-              Row(
-                children: [
-                  Container(
-                      margin: const EdgeInsets.only(right: 15),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15)),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
-                          size: 25,
-                        ),
-                      )),
-                ],
-              ),
-            ])));
   }
 
   Widget _body() {

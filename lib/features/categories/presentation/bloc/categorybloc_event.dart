@@ -7,4 +7,12 @@ abstract class CategoryblocEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetCategory extends CategoryblocEvent {}
+class GetCategory extends CategoryblocEvent {
+  final GetCategorySevise getCategorySevise;
+  final GetCustomerServise getCustomerServise;
+
+  const GetCategory({
+    required this.getCategorySevise,
+    required this.getCustomerServise,
+  });
+}

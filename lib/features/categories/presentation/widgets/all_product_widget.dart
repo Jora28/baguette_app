@@ -124,12 +124,8 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
                                 horizontalOffset: 400,
                                 child: GestureDetector(
                                     onTap: () {
-                                      // Navigator.of(context).push(
-                                      // MaterialPageRoute(
-                                      //     builder: (context) =>
-                                      //         ProductsPage(data.id),
-                                      //     settings: RouteSettings(
-                                      //         arguments: data)));
+                                      context.router.push(ProductPageRoute(
+                                          id: widget.listCategory[index].id));
                                     },
                                     child: CategoryCard(
                                       name: data.name,

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:baguette_app/features/products/data/get_product.dart';
+import 'package:baguette_app/features/products/data/product_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -13,6 +15,13 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   Stream<ProductState> mapEventToState(
     ProductEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    if (event is GetProducts) {
+      yield ProductsLoading();
+      final List<ProductModel> listProducts =
+          await event.getProductsServise.getProducts(event.id);
+      yield ProductsLoaded(listProducts: listProducts);
+    } else if (event is UpDateBasket) {
+      event.addProductsToBasketServise.upDateBasket(event.productModel);
+    }
   }
 }

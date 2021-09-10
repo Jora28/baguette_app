@@ -13,14 +13,16 @@ class AllProductPage extends StatefulWidget {
 }
 
 class _AllProductPageState extends State<AllProductPage> {
-  GetCategorySevise getCategorySevise = GetCategorySevise();
-  GetCustomerServise getCustomerServise = GetCustomerServise();
-
   late CategoryblocBloc getCategoryBloc;
   @override
   void initState() {
     getCategoryBloc = BlocProvider.of<CategoryblocBloc>(context);
-    getCategoryBloc.add(GetCategory());
+    getCategoryBloc.add(
+      GetCategory(
+        getCategorySevise: GetCategorySevise(),
+        getCustomerServise: GetCustomerServise(),
+      ),
+    );
     super.initState();
   }
 

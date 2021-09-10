@@ -53,8 +53,9 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     ProductPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i7.ProductPage();
+        builder: (data) {
+          final args = data.argsAs<ProductPageRouteArgs>();
+          return _i7.ProductPage(key: args.key, id: args.id);
         },
         durationInMilliseconds: 500,
         opaque: true,
@@ -95,8 +96,19 @@ class HomePageRoute extends _i1.PageRouteInfo {
   static const String name = 'HomePageRoute';
 }
 
-class ProductPageRoute extends _i1.PageRouteInfo {
-  const ProductPageRoute() : super(name, path: '/product-page');
+class ProductPageRoute extends _i1.PageRouteInfo<ProductPageRouteArgs> {
+  ProductPageRoute({_i2.Key? key, required String id})
+      : super(name,
+            path: '/product-page',
+            args: ProductPageRouteArgs(key: key, id: id));
 
   static const String name = 'ProductPageRoute';
+}
+
+class ProductPageRouteArgs {
+  const ProductPageRouteArgs({this.key, required this.id});
+
+  final _i2.Key? key;
+
+  final String id;
 }

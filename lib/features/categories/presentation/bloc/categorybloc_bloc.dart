@@ -10,12 +10,7 @@ part 'categorybloc_event.dart';
 part 'categorybloc_state.dart';
 
 class CategoryblocBloc extends Bloc<CategoryblocEvent, CategoryblocState> {
-  final GetCategorySevise getCategorySevise;
-  final GetCustomerServise getCustomerServise;
-  CategoryblocBloc({
-    required this.getCategorySevise,
-    required this.getCustomerServise,
-  }) : super(CategoryblocInitial());
+  CategoryblocBloc() : super(CategoryblocInitial());
 
   @override
   Stream<CategoryblocState> mapEventToState(
@@ -25,9 +20,9 @@ class CategoryblocBloc extends Bloc<CategoryblocEvent, CategoryblocState> {
       try {
         yield CategoryLoading();
         final List<CategoryModel> listCategory =
-            await getCategorySevise.getCategories();
+            await event.getCategorySevise.getCategories();
         final GetCustomerModel customerModel =
-            await getCustomerServise.getUserData();
+            await event.getCustomerServise.getUserData();
         yield CategoryLoaded(
           listCategoryModel: listCategory,
           customerModel: customerModel,
