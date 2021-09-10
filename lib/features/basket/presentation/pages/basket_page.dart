@@ -1,3 +1,4 @@
+import 'package:baguette_app/features/basket/data/basket_servise.dart';
 import 'package:baguette_app/features/basket/presentation/bloc/basket_bloc.dart';
 import 'package:baguette_app/features/basket/presentation/widgets/basket_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,8 @@ class _BasketPageState extends State<BasketPage> {
   @override
   void initState() {
     basketBloc = BlocProvider.of(context);
-    basketBloc.add(GetproductsFromBasket());
+    basketBloc
+        .add(GetproductsFromBasket(basketServise: BasketServise(), id: ''));
     super.initState();
   }
 

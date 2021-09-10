@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:baguette_app/core/widgets/loading.dart';
 import 'package:baguette_app/features/basket/data/basket_servise.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -16,6 +17,10 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
   ) async* {
     if (event is DeleteFrombasketEvent) {
       event.basketServise.deleteProductFromBasket(id: event.productId);
+    } else if (event is GetproductsFromBasket) {
+      yield BasketProductsLoading();
+      final listProductsFromBasket =
+          event.basketServise.getBasketProducts(event.id);
     }
   }
 }
