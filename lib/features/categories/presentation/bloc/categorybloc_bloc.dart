@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:baguette_app/features/all_products/data/category_model.dart';
-import 'package:baguette_app/features/all_products/data/data_sourse.dart';
-import 'package:baguette_app/features/all_products/data/get_customer_model.dart';
+import 'package:baguette_app/features/categories/data/category_model.dart';
+import 'package:baguette_app/features/categories/data/data_sourse.dart';
+import 'package:baguette_app/features/categories/data/get_customer_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

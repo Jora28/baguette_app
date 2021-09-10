@@ -1,16 +1,39 @@
-// import 'package:baguette_app/features/all_products/data/data_sourse.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-// class StorageService {
-//   static final StorageService _singleton = StorageService._internal();
+class StorageService {
+  static final StorageService _singleton = StorageService._internal();
 
-//   final GetCategorySevise getCategorySevise = GetCategorySevise();
-//   final GetCustomerServise getCustomerServise = GetCustomerServise();
+  final String _keyThemeData = 'keyThemData';
+  final String _keyEmail = 'keyEmail';
+  final String _keyPassword = '_keyPassword';
 
-//   factory StorageService() {
-//     return _singleton;
-//   }
+  Future<void> setEmailAndPasswordToSP({
+    required String email,
+    required String password,
+  }) async {
+    final SharedPreferences bagettAppSP = await SharedPreferences.getInstance();
+    await bagettAppSP.setString(_keyEmail, email);
+    await bagettAppSP.setString(_keyPassword, password);
+  }
 
-//   StorageService._internal() {
-//     print('object');
-//   }
-// }
+  Future<Map> getEmailAndPasswordToSP() async {
+    final SharedPreferences bagettAppSP = await SharedPreferences.getInstance();
+    final String? email = bagettAppSP.getString(_keyEmail);
+    final String? password = bagettAppSP.getString(_keyPassword);
+    final Map<String, String?> emailAndPassword = {
+      'email': email,
+      'password': password,
+    };
+    return emailAndPassword;
+  }
+
+  Future<void> setThemeDataToSP() async {}
+
+  factory StorageService() {
+    return _singleton;
+  }
+
+  StorageService._internal() {
+    print('object');
+  }
+}

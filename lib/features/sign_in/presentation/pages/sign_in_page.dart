@@ -28,10 +28,9 @@ class _SignInPageState extends State<SignInPage> {
           listener: (context, state) {
             if (state is Error) {
               showToast(context);
+              absorbing = false;
             } else if (state is SignInRequest) {
               absorbing = true;
-            } else {
-              absorbing = false;
             }
           },
           builder: (BuildContext context, state) {

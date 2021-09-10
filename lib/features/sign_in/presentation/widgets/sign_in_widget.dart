@@ -36,8 +36,8 @@ class _SignInWidgetState extends State<SignInWidget> {
       return;
     }
     _formStateSingIn.currentState?.save();
-    final weaterBloc = BlocProvider.of<SigninBloc>(context);
-    weaterBloc.add(SignIn(email: email, password: password));
+    final SigninBloc signinBloc = BlocProvider.of<SigninBloc>(context);
+    signinBloc.add(SignIn(email: email, password: password));
   }
 
   @override

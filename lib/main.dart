@@ -1,7 +1,9 @@
 import 'package:baguette_app/core/localization/bloc/localization_bloc.dart';
+import 'package:baguette_app/core/localization/l10n/l10n.dart';
 import 'package:baguette_app/core/router.gr.dart';
 import 'package:baguette_app/core/theme/bloc/theme_bloc.dart';
-import 'package:baguette_app/l10n/l10n.dart';
+import 'package:baguette_app/features/categories/data/data_sourse.dart';
+import 'package:baguette_app/features/categories/presentation/bloc/categorybloc_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,6 +36,11 @@ class BaguetteApp extends StatelessWidget {
         BlocProvider<ThemeBloc>(
           create: (BuildContext context) => ThemeBloc(),
         ),
+        BlocProvider<CategoryblocBloc>(
+          create: (BuildContext context) => CategoryblocBloc(
+              getCategorySevise: GetCategorySevise(),
+              getCustomerServise: GetCustomerServise()),
+        )
       ],
       child: BlocBuilder<LocalizationBloc, LocalizationState>(
         builder: (context, localizationState) {

@@ -1,11 +1,32 @@
+import 'package:baguette_app/core/typography/text_styles.dart';
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
-/// Namespace for the History of Adventures [ThemeData].
+/// Namespace for the Baguette & Co. [ThemeData].
 class DefaultTheme {
-  /// Standard `ThemeData` for History of Adventures UI.
-  static ThemeData get standard {
+  /// Standard `ThemeData` for Baguette & Co. UI.
+  static ThemeData get light {
+    return ThemeData(
+      scrollbarTheme: ScrollbarThemeData(
+        thumbColor: MaterialStateProperty.all(AppColors.orange),
+      ),
+      highlightColor: AppColors.orange,
+      colorScheme: ColorScheme.fromSwatch(accentColor: AppColors.blue),
+      appBarTheme: _appBarTheme.copyWith(color: AppColors.white),
+      elevatedButtonTheme: _elevatedButtonTheme,
+      outlinedButtonTheme: _outlinedButtonTheme,
+      textTheme: _textTheme,
+      dialogBackgroundColor: AppColors.white,
+      dialogTheme: _dialogTheme,
+      tooltipTheme: _tooltipTheme,
+      bottomSheetTheme: _bottomSheetTheme,
+      tabBarTheme: _tabBarTheme,
+      dividerTheme: _dividerTheme,
+    );
+  }
+
+  static ThemeData get dark {
     return ThemeData(
       scrollbarTheme: ScrollbarThemeData(
         thumbColor: MaterialStateProperty.all(AppColors.orange),
@@ -25,76 +46,22 @@ class DefaultTheme {
     );
   }
 
-  /// `ThemeData` for History of Adventures UI for small screens.
-  static ThemeData get small {
-    return standard.copyWith(textTheme: _smallTextTheme);
-  }
-
-  /// `ThemeData` for History of Adventures UI for medium screens.
-  static ThemeData get medium {
-    return standard.copyWith(textTheme: _smallTextTheme);
-  }
-
   static TextTheme get _textTheme {
-    return const TextTheme(
-        // headline1: AppTextStyle.headline1,
-        // headline2: AppTextStyle.headline2,
-        // headline3: AppTextStyle.headline3,
-        // headline4: AppTextStyle.headline4,
-        // headline5: AppTextStyle.headline5,
-        // headline6: AppTextStyle.headline6,
-        // subtitle1: AppTextStyle.subtitle1,
-        // subtitle2: AppTextStyle.subtitle2,
-        // bodyText1: AppTextStyle.bodyText1,
-        // bodyText2: AppTextStyle.bodyText2,
-        // caption: AppTextStyle.caption,
-        // overline: AppTextStyle.overline,
-        // button: AppTextStyle.button,
-        );
-  }
-
-  static TextTheme get _smallTextTheme {
-    return const TextTheme(
-        // headline1: AppTextStyle.headline1.copyWith(
-        //   fontSize: _textTheme.headline1!.fontSize! * _smallTextScaleFactor,
-        // ),
-        // headline2: AppTextStyle.headline2.copyWith(
-        //   fontSize: _textTheme.headline2!.fontSize! * _smallTextScaleFactor,
-        // ),
-        // headline3: AppTextStyle.headline3.copyWith(
-        //   fontSize: _textTheme.headline3!.fontSize! * _smallTextScaleFactor,
-        // ),
-        // headline4: AppTextStyle.headline4.copyWith(
-        //   fontSize: _textTheme.headline4!.fontSize! * _smallTextScaleFactor,
-        // ),
-        // headline5: AppTextStyle.headline5.copyWith(
-        //   fontSize: _textTheme.headline5!.fontSize! * _smallTextScaleFactor,
-        // ),
-        // headline6: AppTextStyle.headline6.copyWith(
-        //   fontSize: _textTheme.headline6!.fontSize! * _smallTextScaleFactor,
-        // ),
-        // subtitle1: AppTextStyle.subtitle1.copyWith(
-        //   fontSize: _textTheme.subtitle1!.fontSize! * _smallTextScaleFactor,
-        // ),
-        // subtitle2: AppTextStyle.subtitle2.copyWith(
-        //   fontSize: _textTheme.subtitle2!.fontSize! * _smallTextScaleFactor,
-        // ),
-        // bodyText1: AppTextStyle.bodyText1.copyWith(
-        //   fontSize: _textTheme.bodyText1!.fontSize! * _smallTextScaleFactor,
-        // ),
-        // bodyText2: AppTextStyle.bodyText2.copyWith(
-        //   fontSize: _textTheme.bodyText2!.fontSize! * _smallTextScaleFactor,
-        // ),
-        // caption: AppTextStyle.caption.copyWith(
-        //   fontSize: _textTheme.caption!.fontSize! * _smallTextScaleFactor,
-        // ),
-        // overline: AppTextStyle.overline.copyWith(
-        //   fontSize: _textTheme.overline!.fontSize! * _smallTextScaleFactor,
-        // ),
-        // button: AppTextStyle.button.copyWith(
-        //   fontSize: _textTheme.button!.fontSize! * _smallTextScaleFactor,
-        // ),
-        );
+    return TextTheme(
+      headline1: AppTextStyle.headline1,
+      headline2: AppTextStyle.headline2,
+      headline3: AppTextStyle.headline3,
+      headline4: AppTextStyle.headline4,
+      headline5: AppTextStyle.headline5,
+      headline6: AppTextStyle.headline6,
+      subtitle1: AppTextStyle.subtitle1,
+      subtitle2: AppTextStyle.subtitle2,
+      bodyText1: AppTextStyle.bodyText1,
+      bodyText2: AppTextStyle.bodyText2,
+      caption: AppTextStyle.caption,
+      overline: AppTextStyle.overline,
+      button: AppTextStyle.button,
+    );
   }
 
   static AppBarTheme get _appBarTheme {

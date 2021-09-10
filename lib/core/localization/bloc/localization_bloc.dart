@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:baguette_app/l10n/l10n.dart';
+import 'package:baguette_app/core/localization/l10n/l10n.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';

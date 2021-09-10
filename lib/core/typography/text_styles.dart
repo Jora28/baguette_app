@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../utils/colors.dart';
 
-/// History of Adventures Text Style Definitions
+/// Baguette & Co. Text Style Definitions
 class AppTextStyle {
   static const _baseTextStyle = TextStyle(
       // fontFamily: AppFontFamily.openSans,

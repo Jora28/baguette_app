@@ -2,10 +2,12 @@ import 'package:baguette_app/core/router.gr.dart';
 import 'package:baguette_app/core/utils/colors.dart';
 import 'package:baguette_app/core/widgets/breakfast_slider.dart';
 import 'package:baguette_app/core/widgets/category_card.dart';
-import 'package:baguette_app/features/all_products/data/category_model.dart';
-import 'package:baguette_app/features/all_products/data/get_customer_model.dart';
-import 'package:baguette_app/features/all_products/presentation/pages/settings_page.dart';
+import 'package:baguette_app/features/categories/data/category_model.dart';
+import 'package:baguette_app/features/categories/data/get_customer_model.dart';
+import 'package:baguette_app/features/categories/presentation/pages/settings_page.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -29,6 +31,7 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
   late double screenHeight;
   final Duration duration = const Duration(milliseconds: 150);
   bool _isSideMenuOpen = true;
+  //late CategoryblocBloc getCategoryBloc;
 
   // String email;
   // String password;
@@ -122,11 +125,11 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
                                 child: GestureDetector(
                                     onTap: () {
                                       // Navigator.of(context).push(
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) =>
-                                      //             ProductsPage(data.id),
-                                      //         settings: RouteSettings(
-                                      //             arguments: data)));
+                                      // MaterialPageRoute(
+                                      //     builder: (context) =>
+                                      //         ProductsPage(data.id),
+                                      //     settings: RouteSettings(
+                                      //         arguments: data)));
                                     },
                                     child: CategoryCard(
                                       name: data.name,

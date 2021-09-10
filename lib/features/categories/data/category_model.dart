@@ -1,4 +1,4 @@
-import 'package:baguette_app/features/all_products/domain/category.dart';
+import 'package:baguette_app/features/categories/domain/category.dart';
 
 class CategoryModel extends Categories {
   const CategoryModel({

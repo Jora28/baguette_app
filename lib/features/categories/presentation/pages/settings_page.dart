@@ -1,8 +1,8 @@
 import 'package:baguette_app/core/localization/bloc/localization_bloc.dart';
+import 'package:baguette_app/core/localization/l10n/l10n.dart';
 import 'package:baguette_app/core/theme/bloc/theme_bloc.dart';
 import 'package:baguette_app/core/theme/theme_data.dart';
 import 'package:baguette_app/core/utils/colors.dart';
-import 'package:baguette_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/localizations.dart';
