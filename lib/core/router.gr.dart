@@ -8,9 +8,9 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import '../features/basket/presentation/pages/basket_page.dart' as _i8;
+import '../features/basket/presentation/pages/products_page.dart' as _i7;
 import '../features/categories/presentation/pages/category_page.dart' as _i3;
 import '../features/home/presentation/pages/home_page.dart' as _i6;
-import '../features/products/presentation/pages/products_page.dart' as _i7;
 import '../features/sign_in/presentation/pages/sign_in_page.dart' as _i4;
 import '../features/sign_up/presentation/pages/sign_up_page.dart' as _i5;
 

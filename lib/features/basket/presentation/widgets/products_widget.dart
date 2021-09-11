@@ -1,20 +1,19 @@
 import 'package:baguette_app/core/router.gr.dart';
 import 'package:baguette_app/core/utils/colors.dart';
 import 'package:baguette_app/core/widgets/product.dart';
-import 'package:baguette_app/features/basket/presentation/pages/basket_page.dart';
-import 'package:baguette_app/features/products/data/get_product.dart';
-import 'package:baguette_app/features/products/data/product_model.dart';
-import 'package:baguette_app/features/products/domain/product.dart';
-import 'package:baguette_app/features/products/presentation/bloc/product_bloc.dart';
+import 'package:baguette_app/features/basket/data/repository/get_product.dart';
+import 'package:baguette_app/features/basket/data/models/product_model.dart';
+import 'package:baguette_app/features/basket/presentation/product_bloc/product_bloc.dart';
 import 'package:auto_route/auto_route.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class ProductsWidget extends StatefulWidget {
   final List<ProductModel> productList;
-  const ProductsWidget({required this.productList});
+  final bool? basketBeckArrowVisible;
+  const ProductsWidget(
+      {required this.productList, this.basketBeckArrowVisible});
 
   @override
   _ProductsWidgetState createState() => _ProductsWidgetState();

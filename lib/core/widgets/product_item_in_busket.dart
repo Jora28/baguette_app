@@ -60,7 +60,7 @@ class ProductItemBasket extends StatelessWidget {
                       // overflow: TextOverflow.ellipsis,
                     )),
                 Container(
-                    margin: EdgeInsets.only(left: 10),
+                    margin: const EdgeInsets.only(left: 10),
                     child: Text(
                       "֏" + " ${price * count}",
                       maxLines: 1,

@@ -1,7 +1,7 @@
 import 'package:baguette_app/core/widgets/loading.dart';
-import 'package:baguette_app/features/products/data/get_product.dart';
-import 'package:baguette_app/features/products/presentation/bloc/product_bloc.dart';
-import 'package:baguette_app/features/products/presentation/widgets/products_widget.dart';
+import 'package:baguette_app/features/basket/data/repository/get_product.dart';
+import 'package:baguette_app/features/basket/presentation/product_bloc/product_bloc.dart';
+import 'package:baguette_app/features/basket/presentation/widgets/products_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

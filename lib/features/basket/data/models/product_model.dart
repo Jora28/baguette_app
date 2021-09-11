@@ -1,4 +1,4 @@
-import 'package:baguette_app/features/products/domain/product.dart';
+import 'package:baguette_app/features/basket/domain/product.dart';
 
 class ProductModel extends Product {
   ProductModel({

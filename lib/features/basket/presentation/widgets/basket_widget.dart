@@ -1,21 +1,18 @@
 import 'package:baguette_app/core/utils/colors.dart';
 import 'package:baguette_app/core/utils/styles.dart';
-import 'package:baguette_app/core/widgets/button.dart';
 import 'package:baguette_app/core/widgets/product_item_in_busket.dart';
-import 'package:baguette_app/features/basket/data/basket_servise.dart';
-import 'package:baguette_app/features/basket/data/order_model.dart';
-import 'package:baguette_app/features/basket/domain/order.dart';
-import 'package:baguette_app/features/basket/presentation/bloc/basket_bloc.dart';
-import 'package:baguette_app/features/products/data/basket_product_model.dart';
+import 'package:baguette_app/features/basket/data/models/basket_product_model.dart';
+import 'package:baguette_app/features/basket/data/repository/basket_servise.dart';
+import 'package:baguette_app/features/basket/data/models/order_model.dart';
+import 'package:baguette_app/features/basket/presentation/basket_bloc/basket_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsInBasketWidget extends StatefulWidget {
-  bool navigateFromProductPage = false;
+  bool? navigateFromProductPage = false;
   final List<BasketProductModel> listBasketProducts;
 
   ProductsInBasketWidget({
@@ -190,7 +187,7 @@ class _ProductsInBasketWidgetState extends State<ProductsInBasketWidget> {
         child: Row(
           children: [
             Visibility(
-              visible: widget.navigateFromProductPage,
+              visible: widget.navigateFromProductPage!,
               child: SizedBox(
                 child: IconButton(
                   icon: const Icon(Icons.arrow_back),

@@ -7,7 +7,6 @@ import 'package:baguette_app/features/categories/data/get_customer_model.dart';
 import 'package:baguette_app/features/categories/presentation/pages/settings_page.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -26,27 +25,10 @@ class AllProductsPageWidget extends StatefulWidget {
 }
 
 class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
-  // List<Category> allProductList = [];
   late double screenWidth;
   late double screenHeight;
   final Duration duration = const Duration(milliseconds: 150);
   bool _isSideMenuOpen = true;
-  //late CategoryblocBloc getCategoryBloc;
-
-  // String email;
-  // String password;
-
-  // void getUserSecurety() async {
-  //   // var getEmail = await UserSecureStorage().getEmail();
-  //   // var getPassword = await UserSecureStorage().getPassword();
-  //   // Users user = await Api().authServise.getUserData();
-  //   // if (mounted)
-  //   //   setState(() {
-  //   //     email = getEmail;
-  //   //     password = getPassword;
-  //   //     users = user;
-  //   //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -206,7 +188,7 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SettingPage()));
+                            builder: (context) => const SettingPage()));
                       },
                       child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 10),

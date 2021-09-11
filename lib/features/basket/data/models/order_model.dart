@@ -1,5 +1,5 @@
+import 'package:baguette_app/features/basket/data/models/basket_product_model.dart';
 import 'package:baguette_app/features/basket/domain/order.dart';
-import 'package:baguette_app/features/products/data/basket_product_model.dart';
 
 class OrderModel extends Order {
   const OrderModel({

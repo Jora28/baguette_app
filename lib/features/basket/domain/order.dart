@@ -1,4 +1,4 @@
-import 'package:baguette_app/features/products/data/basket_product_model.dart';
+import 'package:baguette_app/features/basket/data/models/basket_product_model.dart';
 import 'package:equatable/equatable.dart';
 
 class Order extends Equatable {
