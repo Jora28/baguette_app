@@ -63,8 +63,12 @@ class FlutterRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     BasketPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i8.BasketPage();
+        builder: (data) {
+          final args = data.argsAs<BasketPageRouteArgs>(
+              orElse: () => const BasketPageRouteArgs());
+          return _i8.BasketPage(
+              key: args.key,
+              basketBackArrowVisible: args.basketBackArrowVisible);
         },
         durationInMilliseconds: 500,
         opaque: true,
@@ -123,8 +127,20 @@ class ProductPageRouteArgs {
   final String id;
 }
 
-class BasketPageRoute extends _i1.PageRouteInfo {
-  const BasketPageRoute() : super(name, path: '/basket-page');
+class BasketPageRoute extends _i1.PageRouteInfo<BasketPageRouteArgs> {
+  BasketPageRoute({_i2.Key? key, bool? basketBackArrowVisible})
+      : super(name,
+            path: '/basket-page',
+            args: BasketPageRouteArgs(
+                key: key, basketBackArrowVisible: basketBackArrowVisible));
 
   static const String name = 'BasketPageRoute';
+}
+
+class BasketPageRouteArgs {
+  const BasketPageRouteArgs({this.key, this.basketBackArrowVisible});
+
+  final _i2.Key? key;
+
+  final bool? basketBackArrowVisible;
 }

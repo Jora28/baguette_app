@@ -5,13 +5,13 @@ import 'package:baguette_app/features/basket/presentation/basket_bloc/basket_blo
 
 import 'package:baguette_app/features/basket/presentation/widgets/basket_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BasketPage extends StatefulWidget {
   final bool? basketBackArrowVisible;
-  const BasketPage({Key? key,this.basketBackArrowVisible}) : super(key: key);
+  const BasketPage({Key? key, this.basketBackArrowVisible}) : super(key: key);
 
   @override
   _BasketPageState createState() => _BasketPageState();
@@ -26,7 +26,7 @@ class _BasketPageState extends State<BasketPage> {
       basketServise: BasketServise(),
       id: FirebaseAuth.instance.currentUser!.uid,
     ));
-    FirebaseMessaging.instance;
+    // FirebaseMessaging.instance;
     super.initState();
   }
 

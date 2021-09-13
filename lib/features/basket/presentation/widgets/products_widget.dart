@@ -77,7 +77,8 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                 color: Colors.black,
               ),
               onPressed: () {
-                context.router.push(const BasketPageRoute());
+                context.router
+                    .push(BasketPageRoute(basketBackArrowVisible: true));
               },
             ),
           ),

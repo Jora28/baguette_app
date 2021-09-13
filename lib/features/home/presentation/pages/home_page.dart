@@ -50,8 +50,8 @@ class _HomePageState extends State<HomePage> {
         return const AllProductPage();
       case 2:
         return const BasketPage(
-            // navigateFromProductPage: false,
-            );
+          basketBackArrowVisible: false,
+        );
       case 0:
         return const InfoPage();
       default:

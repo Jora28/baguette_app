@@ -16,7 +16,7 @@ class ProductsInBasketWidget extends StatefulWidget {
   final List<BasketProductModel> listBasketProducts;
 
   ProductsInBasketWidget({
-    required this.navigateFromProductPage,
+    this.navigateFromProductPage = false,
     required this.listBasketProducts,
   });
 
@@ -41,16 +41,13 @@ class _ProductsInBasketWidgetState extends State<ProductsInBasketWidget> {
         phoneNumber: '+37498966976');
     basketBloc = BlocProvider.of<BasketBloc>(context);
 
-
-
     super.initState();
   }
 
   void getAllPrice() {
     for (var i = 0; i < widget.listBasketProducts.length; ++i) {
-      allPrice +=
-          widget.listBasketProducts[i].price *
-              widget.listBasketProducts[i].count;
+      allPrice += widget.listBasketProducts[i].price *
+          widget.listBasketProducts[i].count;
     }
     print("price::: $allPrice");
   }
