@@ -12,11 +12,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsInBasketWidget extends StatefulWidget {
-  bool? navigateFromProductPage = false;
+  bool? navigateFromProductPage;
   final List<BasketProductModel> listBasketProducts;
 
   ProductsInBasketWidget({
-    this.navigateFromProductPage = false,
+    this.navigateFromProductPage,
     required this.listBasketProducts,
   });
 
