@@ -36,6 +36,21 @@ class BasketServise {
     return doc;
   }
 
+  Stream<List<BasketProductModel>>? getStreamBasketProducts(String id) {
+    final res = basketCollection
+        .where('ownerId', isEqualTo: id)
+        .snapshots()
+        .map((event) => event.docs
+            .map((e) => BasketProductModel.fromJson(e.data()))
+            .toList());
+    // final doc = res.docs.map((element) {
+    //   return BasketProductModel.fromJson(element.data());
+    // }).toList();
+    // print(doc);
+
+    return res;
+  }
+
   Future<void> addOrder(OrderModel orderModel) async {
     try {
       await store

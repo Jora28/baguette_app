@@ -6,6 +6,8 @@ import 'package:baguette_app/features/basket/data/repository/basket_servise.dart
 import 'package:baguette_app/features/basket/data/models/order_model.dart';
 import 'package:baguette_app/features/basket/presentation/basket_bloc/basket_bloc.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -73,37 +75,88 @@ class _ProductsInBasketWidgetState extends State<ProductsInBasketWidget> {
             overscroll.disallowGlow();
             return true;
           },
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: widget.listBasketProducts.length,
-            itemBuilder: (context, index) {
-              final BasketProductModel product =
-                  widget.listBasketProducts[index];
-              return ProductItemBasket(
-                  onM: product.count == 0
-                      ? () {}
-                      : () {
-                          setState(() {
-                            product.count--;
-                          });
-                        },
-                  onP: () {
-                    setState(() {
-                      product.count++;
-                    });
-                  },
-                  onSave: () {
-                    setState(() {
-                      // basketBloc.add(DeleteFrombasketEvent(
-                      //     basketServise: BasketServise(),
-                      //     productId: product.id));
-                    });
-                  },
-                  icon: Icon(Icons.delete),
-                  count: product.count,
-                  name: product.name,
-                  price: product.price,
-                  image: product.image);
+          child: StreamBuilder<List<BasketProductModel>>(
+            stream: BasketServise().getStreamBasketProducts(FirebaseAuth.instance.currentUser!.uid),
+            builder: (context, snapshot) {
+              var listBasketProducts = snapshot.data;
+              if (snapshot.hasError)
+                return Text('Error: ${snapshot.error}');
+
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                  return Text('No data');
+                case ConnectionState.waiting:
+                  return Text('Awaiting...');
+                case ConnectionState.active:
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: snapshot.data?.length,
+                    itemBuilder: (context, index) {
+                      final BasketProductModel product =
+                          listBasketProducts![index];
+                      return ProductItemBasket(
+                          onM: product.count == 0
+                              ? () {}
+                              : () {
+                                  setState(() {
+                                    product.count--;
+                                  });
+                                },
+                          onP: () {
+                            setState(() {
+                              product.count++;
+                            });
+                          },
+                          onSave: () {
+                            setState(() {
+                              basketBloc.add(DeleteFrombasketEvent(
+                                  basketServise: BasketServise(),
+                                  productId: product.id));
+                            });
+                          },
+                          icon: Icon(Icons.delete),
+                          count: product.count,
+                          name: product.name,
+                          price: product.price,
+                          image: product.image);
+                    },
+                  );
+                  break;
+                case ConnectionState.done:
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: snapshot.data?.length,
+                    itemBuilder: (context, index) {
+                      final BasketProductModel product =
+                          listBasketProducts![index];
+                      return ProductItemBasket(
+                          onM: product.count == 0
+                              ? () {}
+                              : () {
+                                  setState(() {
+                                    product.count--;
+                                  });
+                                },
+                          onP: () {
+                            setState(() {
+                              product.count++;
+                            });
+                          },
+                          onSave: () {
+                            setState(() {
+                              // basketBloc.add(DeleteFrombasketEvent(
+                              //     basketServise: BasketServise(),
+                              //     productId: product.id));
+                            });
+                          },
+                          icon: Icon(Icons.delete),
+                          count: product.count,
+                          name: product.name,
+                          price: product.price,
+                          image: product.image);
+                    },
+                  );
+              }
             },
           ),
         ),
