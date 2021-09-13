@@ -111,7 +111,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                 prefix: Icons.lock_outline,
                 onSaved: (v) => password = v!,
                 validator: (v) => v!.isEmpty ? "Password is required" : null,
-                obscureText: false,
+                obscureText: true,
               ),
             ),
             // Container(

@@ -125,7 +125,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   prefix: Icons.lock_outline,
                   onSaved: (v) => password = v,
                   validator: (v) => v!.isEmpty ? "Password is required" : null,
-                  obscureText: false,
+                  obscureText: true,
                   controller: _passwordEditCotroller,
                 ),
               ),
