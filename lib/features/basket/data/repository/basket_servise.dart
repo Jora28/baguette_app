@@ -8,8 +8,19 @@ class BasketServise {
   final store = FirebaseFirestore.instance;
   final CollectionReference basketCollection =
       FirebaseFirestore.instance.collection('basket');
-  Future<void> deleteProductFromBasket({required String id}) async {
-    basketCollection.where('ownerId', isEqualTo: id).get().then((snapshot) {
+  Future<void> deleteProductFromBasket({required String ownerId}) async {
+    basketCollection
+        .where('ownerId', isEqualTo: ownerId)
+        .get()
+        .then((snapshot) {
+      for (DocumentSnapshot ds in snapshot.docs) {
+        ds.reference.delete();
+      }
+    });
+  }
+
+  Future<void> deleteProductByIdFromBasket({required String productId}) async {
+    basketCollection.where('id', isEqualTo: productId).get().then((snapshot) {
       for (DocumentSnapshot ds in snapshot.docs) {
         ds.reference.delete();
       }

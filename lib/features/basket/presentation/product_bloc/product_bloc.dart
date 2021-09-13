@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:baguette_app/features/basket/data/repository/basket_servise.dart';
 import 'package:baguette_app/features/basket/data/repository/get_product.dart';
 import 'package:baguette_app/features/basket/data/models/product_model.dart';
 

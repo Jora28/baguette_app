@@ -94,7 +94,9 @@ class _ProductsInBasketWidgetState extends State<ProductsInBasketWidget> {
                   },
                   onSave: () {
                     setState(() {
-                      //  onDelete(product.id);
+                      // basketBloc.add(DeleteFrombasketEvent(
+                      //     basketServise: BasketServise(),
+                      //     productId: product.id));
                     });
                   },
                   icon: Icon(Icons.delete),

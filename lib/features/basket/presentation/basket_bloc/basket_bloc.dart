@@ -19,7 +19,7 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
   ) async* {
     if (event is DeleteFrombasketEvent) {
       event.basketServise
-          .deleteProductFromBasket(id: FirebaseAuth.instance.currentUser!.uid);
+          .deleteProductByIdFromBasket(productId: event.productId);
     } else if (event is GetproductsFromBasket) {
       yield BasketProductsLoading();
       final List<BasketProductModel> listProductsFromBasket =
@@ -28,8 +28,8 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
     } else if (event is AddOrder) {
       yield BasketProductsLoading();
       await event.basketServise.addOrder(event.orderModel);
-      await event.basketServise
-          .deleteProductFromBasket(id: FirebaseAuth.instance.currentUser!.uid);
+      await event.basketServise.deleteProductFromBasket(
+          ownerId: FirebaseAuth.instance.currentUser!.uid);
       yield OrderSended();
     }
   }
