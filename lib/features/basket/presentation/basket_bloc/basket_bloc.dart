@@ -18,7 +18,8 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
     BasketEvent event,
   ) async* {
     if (event is DeleteFrombasketEvent) {
-      event.basketServise.deleteProductFromBasket(id: event.productId);
+      event.basketServise
+          .deleteProductFromBasket(id: FirebaseAuth.instance.currentUser!.uid);
     } else if (event is GetproductsFromBasket) {
       yield BasketProductsLoading();
       final List<BasketProductModel> listProductsFromBasket =

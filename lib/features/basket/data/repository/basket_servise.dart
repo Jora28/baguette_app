@@ -6,7 +6,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 class BasketServise {
   final store = FirebaseFirestore.instance;
   Future<void> deleteProductFromBasket({required String id}) async {
-     await store.collection('basket').doc(FirebaseAuth.instance.currentUser!.uid).delete();
+    store
+        .collection('basket')
+        .where('ownerId', isEqualTo: id)
+        .get()
+        .then((snapshot) {
+      for (DocumentSnapshot ds in snapshot.docs) {
+        ds.reference.delete();
+      }
+    });
   }
 
   Future<List<BasketProductModel>> getBasketProducts(String id) async {
@@ -21,11 +29,10 @@ class BasketServise {
 
   Future<void> addOrder(OrderModel orderModel) async {
     try {
-       await store
+      await store
           .collection('orders')
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .set(orderModel.toJson());
-
     } catch (e) {
       print(e.toString());
     }
