@@ -20,7 +20,7 @@ class GetProducts extends ProductEvent {
 }
 
 class UpDateBasket extends ProductEvent {
-  final AddProductsToBasketServise addProductsToBasketServise;
+  final BasketServise addProductsToBasketServise;
   final ProductModel productModel;
 
   const UpDateBasket({

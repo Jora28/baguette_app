@@ -1,7 +1,7 @@
 import 'package:baguette_app/core/router.gr.dart';
 import 'package:baguette_app/core/utils/colors.dart';
 import 'package:baguette_app/core/widgets/product.dart';
-import 'package:baguette_app/features/basket/data/repository/get_product.dart';
+import 'package:baguette_app/features/basket/data/repository/basket_servise.dart';
 import 'package:baguette_app/features/basket/data/models/product_model.dart';
 import 'package:baguette_app/features/basket/presentation/product_bloc/product_bloc.dart';
 import 'package:auto_route/auto_route.dart';
@@ -24,7 +24,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
   void _onSave(int index) {
     productBloc = BlocProvider.of(context);
     productBloc.add(UpDateBasket(
-      addProductsToBasketServise: AddProductsToBasketServise(),
+      addProductsToBasketServise: BasketServise(),
       productModel: widget.productList[index],
     ));
   }

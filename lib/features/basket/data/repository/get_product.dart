@@ -1,8 +1,6 @@
-import 'package:baguette_app/features/basket/data/models/basket_product_model.dart';
 import 'package:baguette_app/features/basket/data/models/product_model.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class GetProductsServise {
   Future<List<ProductModel>> getProducts(String id) async {
@@ -14,24 +12,5 @@ class GetProductsServise {
       return ProductModel.fromJson(element.data());
     }).toList();
     return listProductModel;
-  }
-}
-
-class AddProductsToBasketServise {
-  final CollectionReference basketUser =
-      FirebaseFirestore.instance.collection('basket');
-  Future upDateBasket(ProductModel product) async {
-    final String? res = FirebaseAuth.instance.currentUser?.uid;
-    final String docPath = '${res!}+${product.id}';
-    final BasketProductModel basketProductModel = BasketProductModel(
-        id: product.id,
-        category: product.category,
-        image: product.image,
-        name: product.name,
-        count: product.count,
-        price: product.price,
-        ownerId: res);
-
-    await basketUser.doc(docPath).set(basketProductModel.toJson());
   }
 }
