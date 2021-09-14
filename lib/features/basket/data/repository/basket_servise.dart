@@ -5,23 +5,33 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class BasketServise {
+  static final BasketServise _api = BasketServise._internal();
+
+  factory BasketServise() => _api;
+  BasketServise._internal();
+
+  // final DataBaseServise  dataBaseServise = DataBaseServise();
+  // final AuthServise authServise = AuthServise();
+
   final store = FirebaseFirestore.instance;
   final CollectionReference basketCollection =
       FirebaseFirestore.instance.collection('basket');
   Future<void> deleteProductFromBasket({required String ownerId}) async {
+    print('delet Product');
     basketCollection
         .where('ownerId', isEqualTo: ownerId)
         .get()
         .then((snapshot) {
-      for (DocumentSnapshot ds in snapshot.docs) {
+      for (final DocumentSnapshot ds in snapshot.docs) {
         ds.reference.delete();
       }
     });
   }
 
   Future<void> deleteProductByIdFromBasket({required String productId}) async {
+    print('delet Product');
     basketCollection.where('id', isEqualTo: productId).get().then((snapshot) {
-      for (DocumentSnapshot ds in snapshot.docs) {
+      for (final DocumentSnapshot ds in snapshot.docs) {
         ds.reference.delete();
       }
     });
@@ -43,11 +53,6 @@ class BasketServise {
         .map((event) => event.docs
             .map((e) => BasketProductModel.fromJson(e.data()))
             .toList());
-    // final doc = res.docs.map((element) {
-    //   return BasketProductModel.fromJson(element.data());
-    // }).toList();
-    // print(doc);
-
     return res;
   }
 
@@ -55,7 +60,8 @@ class BasketServise {
     try {
       await store
           .collection('orders')
-          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .doc(FirebaseAuth.instance.currentUser!.uid +
+              DateTime.now().toString())
           .set(orderModel.toJson());
     } catch (e) {
       print(e.toString());
