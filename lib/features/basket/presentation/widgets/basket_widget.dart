@@ -29,7 +29,6 @@ class ProductsInBasketWidget extends StatefulWidget {
 class _ProductsInBasketWidgetState extends State<ProductsInBasketWidget> {
   bool isLoading = false;
   int allPrice = 0;
-  late OrderModel orderModel;
 
   late BasketBloc basketBloc;
   final BasketServise basketServise = BasketServise();
@@ -37,12 +36,7 @@ class _ProductsInBasketWidgetState extends State<ProductsInBasketWidget> {
   @override
   void initState() {
     // getAllprice();
-    orderModel = OrderModel(
-        orderOwnerId: FirebaseAuth.instance.currentUser!.uid,
-        addres: 'Gyumri',
-        listBasketProductModel: widget.listBasketProducts,
-        orderPrise: allPrice.toString(),
-        phoneNumber: '+37498966976');
+
     basketBloc = BlocProvider.of<BasketBloc>(context);
 
     super.initState();
@@ -56,6 +50,11 @@ class _ProductsInBasketWidgetState extends State<ProductsInBasketWidget> {
             widget.listBasketProducts[i].price;
       });
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
   }
 
   @override
@@ -94,18 +93,17 @@ class _ProductsInBasketWidgetState extends State<ProductsInBasketWidget> {
                             setState(() {
                               product.count--;
                             });
+                            basketServise.upDateProductInBasket(product);
                           },
                     onP: () {
                       setState(() {
                         product.count++;
                       });
+                      basketServise.upDateProductInBasket(product);
                     },
                     onSave: () {
                       setState(() {
                         widget.listBasketProducts.removeAt(index);
-                        widget.listBasketProducts.forEach((element) {
-                          print(element.name);
-                        });
                       });
                       basketBloc.add(DeleteFrombasketEvent(
                           basketServise: basketServise, productId: product.id));
@@ -160,7 +158,14 @@ class _ProductsInBasketWidgetState extends State<ProductsInBasketWidget> {
                     : () {
                         basketBloc.add(AddOrder(
                             basketServise: BasketServise(),
-                            orderModel: orderModel));
+                            orderModel: OrderModel(
+                                orderOwnerId:
+                                    FirebaseAuth.instance.currentUser!.uid,
+                                addres: 'Gyumri',
+                                listBasketProductModel:
+                                    widget.listBasketProducts,
+                                orderPrise: allPrice.toString(),
+                                phoneNumber: '+37498966976')));
                       },
                 style: ElevatedButton.styleFrom(
                     primary: AppColors.red,

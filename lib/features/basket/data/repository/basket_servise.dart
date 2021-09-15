@@ -5,11 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class BasketServise {
-  static final BasketServise _api = BasketServise._internal();
-
-  factory BasketServise() => _api;
-  BasketServise._internal();
-
   // final DataBaseServise  dataBaseServise = DataBaseServise();
   // final AuthServise authServise = AuthServise();
 
@@ -81,5 +76,22 @@ class BasketServise {
         ownerId: res);
 
     await basketCollection.doc(docPath).set(basketProductModel.toJson());
+  }
+
+  Future<void> upDateProductInBasket(BasketProductModel product) {
+    final String? res = FirebaseAuth.instance.currentUser?.uid;
+
+    return basketCollection
+        .where(
+          'ownerId',
+          isEqualTo: res,
+        )
+        .where('id', isEqualTo: product.id)
+        .get()
+        .then((snapshot) {
+      for (final DocumentSnapshot ds in snapshot.docs) {
+        ds.reference.update({'count': product.count});
+      }
+    });
   }
 }
