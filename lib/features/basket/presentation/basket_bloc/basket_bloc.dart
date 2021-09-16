@@ -15,7 +15,6 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
   BehaviorSubject<List<BasketProductModel>>? behaviorSubject;
 
   BasketBloc() : super(BasketInitial()) {
-    print("object BasketBloc");
     initBasketProdSubskription();
   }
 

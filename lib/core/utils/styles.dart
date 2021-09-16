@@ -19,8 +19,8 @@ class Shadows {
           blurRadius: 1,
         ),
       ];
-  static List<BoxShadow> get appBar => const[
-       BoxShadow(
+  static List<BoxShadow> get appBar => const [
+        BoxShadow(
           offset: Offset(0, 1),
           color: AppColors.grey,
           blurRadius: 1,
@@ -30,7 +30,6 @@ class Shadows {
         //   color: AppColors.grey,
         //   blurRadius: 1,
         // ),
-       
       ];
 }
 
@@ -43,6 +42,7 @@ class Times {
   static const Duration slower = Duration(milliseconds: 1000);
   static const Duration slowest = Duration(milliseconds: 1500);
   static const Duration backgrounAnimationDuration = Duration(seconds: 12);
+  static const Duration toastDuration = Duration(seconds: 4);
 }
 
 class Corners {

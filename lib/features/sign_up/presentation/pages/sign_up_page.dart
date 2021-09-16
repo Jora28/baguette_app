@@ -1,5 +1,6 @@
 import 'package:baguette_app/core/widgets/loading.dart';
 import 'package:baguette_app/core/widgets/show_toast.dart';
+import 'package:baguette_app/core/widgets/toast.dart';
 import 'package:baguette_app/features/sign_up/data/data_sourse.dart';
 import 'package:baguette_app/features/sign_up/presentation/bloc/signup_bloc.dart';
 import 'package:baguette_app/features/sign_up/presentation/widgets/sign_up_widget.dart';
@@ -15,6 +16,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final RegisterServise registerServise = RegisterServise();
+  bool absorbing = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,17 +28,27 @@ class _SignUpPageState extends State<SignUpPage> {
         child: BlocConsumer<SignupBloc, SignupState>(
           listener: (context, state) {
             if (state is SignUpError) {
-              showToast(context, 'Your email/passwor is wrong');
+              showToast(
+                  context: context,
+                  text: state.message,
+                  toastGravity: ToastGravity.BOTTOM);
+              absorbing = false;
+            } else if (state is SignUpRequest) {
+              absorbing = true;
             }
           },
-          builder: (context, state) {
-            return Stack(
-              children: [
-                if (state is SignupInitial)
-                  const SignUpWidget()
-                else if (state is SignUpRequest)
-                  const LoadingWidget()
-              ],
+          builder: (BuildContext context, state) {
+            return AbsorbPointer(
+              absorbing: absorbing,
+              child: Stack(
+                children: [
+                  const SignUpWidget(),
+                  if (state is SignupInitial)
+                    const SignUpWidget()
+                  else if (state is SignUpRequest)
+                    const LoadingWidget()
+                ],
+              ),
             );
           },
         ),

@@ -1,5 +1,6 @@
 import 'package:baguette_app/core/widgets/loading.dart';
 import 'package:baguette_app/core/widgets/show_toast.dart';
+import 'package:baguette_app/core/widgets/toast.dart';
 import 'package:baguette_app/features/basket/data/models/basket_product_model.dart';
 import 'package:baguette_app/features/basket/data/repository/basket_servise.dart';
 import 'package:baguette_app/features/basket/presentation/basket_bloc/basket_bloc.dart';
@@ -41,7 +42,10 @@ class _BasketPageState extends State<BasketPage> {
         child: BlocConsumer<BasketBloc, BasketState>(
           listener: (context, state) {
             if (state is OrderSended) {
-              showToast(context, 'The Deliver have been done');
+              showToast(
+                  context: context,
+                  text: 'The Deliver have been done',
+                  toastGravity: ToastGravity.CENTER);
             }
           },
           builder: (BuildContext context, state) {
@@ -51,28 +55,29 @@ class _BasketPageState extends State<BasketPage> {
                   const LoadingWidget()
                 else if (state is BasketProductsLoaded)
                   StreamBuilder<List<BasketProductModel>>(
-                      stream: basketBloc.behaviorSubject,
-                      builder: (context, snapshot) {
-                        switch (snapshot.connectionState) {
-                          case ConnectionState.done:
-                            return ProductsInBasketWidget(
-                              navigateFromProductPage:
-                                  widget.basketBackArrowVisible,
-                              listBasketProducts: snapshot.data!,
-                            );
-                          case ConnectionState.waiting:
-                            return const LoadingWidget();
-                          case ConnectionState.active:
-                            return ProductsInBasketWidget(
-                              navigateFromProductPage:
-                                  widget.basketBackArrowVisible,
-                              listBasketProducts: snapshot.data!,
-                            );
+                    stream: basketBloc.behaviorSubject,
+                    builder: (context, snapshot) {
+                      switch (snapshot.connectionState) {
+                        case ConnectionState.done:
+                          return ProductsInBasketWidget(
+                            navigateFromProductPage:
+                                widget.basketBackArrowVisible,
+                            listBasketProducts: snapshot.data!,
+                          );
+                        case ConnectionState.waiting:
+                          return const LoadingWidget();
+                        case ConnectionState.active:
+                          return ProductsInBasketWidget(
+                            navigateFromProductPage:
+                                widget.basketBackArrowVisible,
+                            listBasketProducts: snapshot.data!,
+                          );
 
-                          case ConnectionState.none:
-                            return Container();
-                        }
-                      }),
+                        case ConnectionState.none:
+                          return Container();
+                      }
+                    },
+                  ),
                 if (state is OrderSended)
                   ProductsInBasketWidget(
                     navigateFromProductPage: widget.basketBackArrowVisible,

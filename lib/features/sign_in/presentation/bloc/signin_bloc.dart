@@ -33,8 +33,9 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
             email: event.email, password: event.password);
         yield SignInEnded();
         context.router.push(const HomePageRoute());
-      } on FirebaseException {
-        yield const Error(message: 'Your email/passwor is wrong');
+      } on FirebaseException catch (e) {
+        final message = e.code.split('-').join(" ");
+        yield Error(message: message.toUpperCase());
       }
     }
   }

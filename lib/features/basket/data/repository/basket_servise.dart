@@ -12,7 +12,6 @@ class BasketServise {
   final CollectionReference basketCollection =
       FirebaseFirestore.instance.collection('basket');
   Future<void> deleteProductFromBasket({required String ownerId}) async {
-    print('delet Product');
     basketCollection
         .where('ownerId', isEqualTo: ownerId)
         .get()
@@ -24,7 +23,6 @@ class BasketServise {
   }
 
   Future<void> deleteProductByIdFromBasket({required String productId}) async {
-    print('delet Product');
     basketCollection.where('id', isEqualTo: productId).get().then((snapshot) {
       for (final DocumentSnapshot ds in snapshot.docs) {
         ds.reference.delete();
@@ -37,7 +35,6 @@ class BasketServise {
     final doc = res.docs.map((element) {
       return BasketProductModel.fromJson(element.data());
     }).toList();
-    // print(doc);
     return doc;
   }
 
@@ -64,7 +61,6 @@ class BasketServise {
   }
 
   Future upDateBasket(ProductModel product) async {
-    print('upDateBasket');
     final String? res = FirebaseAuth.instance.currentUser?.uid;
     final String docPath = '${res!}+${product.id}';
     final BasketProductModel basketProductModel = BasketProductModel(

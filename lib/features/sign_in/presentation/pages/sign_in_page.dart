@@ -1,5 +1,6 @@
 import 'package:baguette_app/core/widgets/loading.dart';
 import 'package:baguette_app/core/widgets/show_toast.dart';
+import 'package:baguette_app/core/widgets/toast.dart';
 import 'package:baguette_app/features/sign_in/data/data_sourse.dart';
 import 'package:baguette_app/features/sign_in/presentation/bloc/signin_bloc.dart';
 import 'package:baguette_app/features/sign_in/presentation/widgets/sign_in_widget.dart';
@@ -27,7 +28,10 @@ class _SignInPageState extends State<SignInPage> {
         child: BlocConsumer<SigninBloc, SigninState>(
           listener: (context, state) {
             if (state is Error) {
-              showToast(context, 'Your email/passwor is wrong');
+              showToast(
+                  context: context,
+                  text: state.message,
+                  toastGravity: ToastGravity.BOTTOM);
               absorbing = false;
             } else if (state is SignInRequest) {
               absorbing = true;

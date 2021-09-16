@@ -1,5 +1,6 @@
 import 'package:baguette_app/core/router.gr.dart';
 import 'package:baguette_app/core/utils/colors.dart';
+import 'package:baguette_app/core/utils/string_utils.dart';
 import 'package:baguette_app/core/widgets/product.dart';
 import 'package:baguette_app/features/basket/data/repository/basket_servise.dart';
 import 'package:baguette_app/features/basket/data/models/product_model.dart';
@@ -62,12 +63,15 @@ class _ProductsWidgetState extends State<ProductsWidget> {
             ),
           ),
           Container(
-              child: Text(
-            widget.productList.isNotEmpty
-                ? "${widget.productList[0].category[0].toUpperCase()}${widget.productList[0].category.substring(1)}"
-                : "",
-            style: const TextStyle(fontSize: 18),
-          )),
+            child: Text(
+              widget.productList.isNotEmpty
+                  ? StringUtils.titleCaseSingle(
+                      widget.productList[0].category[0])
+                  //  "${widget.productList[0].category[0].toUpperCase()}${widget.productList[0].category.substring(1)}"
+                  : "",
+              style: const TextStyle(fontSize: 18),
+            ),
+          ),
           const Spacer(),
           Container(
             padding: const EdgeInsets.only(right: 10),

@@ -10,26 +10,21 @@ class RegisterServise {
     required String email,
     required String password,
   }) async {
-    try {
-      final res = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
+    final res = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    if (res.user == null) {
+      throw FirebaseException;
+    } else {
       return res.user != null;
-    } catch (e) {
-      print(e.toString());
-      return false;
     }
   }
 
   Future upDateUser({required CustomerModel model}) async {
     model.id = _firebaseAuth.currentUser!.uid;
-    try {
-      await store
-          .collection('usersPath')
-          .doc(_firebaseAuth.currentUser!.uid)
-          .set(model.toJson());
-      return true;
-    } catch (e) {
-      print(e.toString());
-    }
+
+    await store
+        .collection('usersPath')
+        .doc(_firebaseAuth.currentUser!.uid)
+        .set(model.toJson());
   }
 }

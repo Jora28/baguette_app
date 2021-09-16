@@ -33,9 +33,10 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         );
         await registerServise.upDateUser(model: event.customerModel);
         yield SignUpEnded();
-        context.router.push(const AllProductPageRoute());
-      } on FirebaseException {
-        yield const SignUpError(message: "message");
+        context.router.push(const HomePageRoute());
+      } on FirebaseException catch (e) {
+        final message = e.code.split('-').join(" ");
+        yield SignUpError(message: message.toUpperCase());
       }
     }
   }

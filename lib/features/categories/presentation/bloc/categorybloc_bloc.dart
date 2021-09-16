@@ -29,7 +29,6 @@ class CategoryblocBloc extends Bloc<CategoryblocEvent, CategoryblocState> {
         );
       } catch (e) {
         yield CategoryError();
-        print("get category erroe");
       }
     }
   }
