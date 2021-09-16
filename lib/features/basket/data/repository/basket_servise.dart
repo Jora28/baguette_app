@@ -64,6 +64,7 @@ class BasketServise {
   }
 
   Future upDateBasket(ProductModel product) async {
+    print('upDateBasket');
     final String? res = FirebaseAuth.instance.currentUser?.uid;
     final String docPath = '${res!}+${product.id}';
     final BasketProductModel basketProductModel = BasketProductModel(
@@ -82,10 +83,7 @@ class BasketServise {
     final String? res = FirebaseAuth.instance.currentUser?.uid;
 
     return basketCollection
-        .where(
-          'ownerId',
-          isEqualTo: res,
-        )
+        .where('ownerId', isEqualTo: res)
         .where('id', isEqualTo: product.id)
         .get()
         .then((snapshot) {
