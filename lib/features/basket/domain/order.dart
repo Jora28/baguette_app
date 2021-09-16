@@ -6,13 +6,16 @@ class Order extends Equatable {
   final String orderPrise;
   final String addres;
   final String phoneNumber;
+  final String orderOwnerId;
 
   const Order({
+    required this.orderOwnerId,
     required this.listBasketProductModel,
     required this.orderPrise,
     required this.addres,
     required this.phoneNumber,
   });
   @override
-  List<Object?> get props => [listBasketProductModel,orderPrise,addres,phoneNumber];
+  List<Object?> get props =>
+      [listBasketProductModel, orderPrise, addres, phoneNumber];
 }

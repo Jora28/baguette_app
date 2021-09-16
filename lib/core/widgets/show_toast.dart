@@ -7,6 +7,7 @@ dynamic showToast(BuildContext context, String text) {
   final FToast toast = FToast();
   toast.init(context);
   toast.showToast(
+    gravity: ToastGravity.CENTER,
     child: Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       color: AppColors.red,

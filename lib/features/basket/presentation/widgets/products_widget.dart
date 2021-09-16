@@ -113,7 +113,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                         onP: () {
                           setState(() {
                             widget.productList[index].count++;
-                            print(widget.productList[index].count);
+                            //print(widget.productList[index].count);
                           });
                         },
                         count: widget.productList[index].count,

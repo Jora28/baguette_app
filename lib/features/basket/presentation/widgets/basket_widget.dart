@@ -1,11 +1,13 @@
 import 'package:baguette_app/core/utils/colors.dart';
 import 'package:baguette_app/core/utils/styles.dart';
+import 'package:baguette_app/core/widgets/loading.dart';
 import 'package:baguette_app/core/widgets/product_item_in_busket.dart';
 import 'package:baguette_app/features/basket/data/models/basket_product_model.dart';
 import 'package:baguette_app/features/basket/data/repository/basket_servise.dart';
 import 'package:baguette_app/features/basket/data/models/order_model.dart';
 import 'package:baguette_app/features/basket/presentation/basket_bloc/basket_bloc.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,86 +29,92 @@ class ProductsInBasketWidget extends StatefulWidget {
 class _ProductsInBasketWidgetState extends State<ProductsInBasketWidget> {
   bool isLoading = false;
   int allPrice = 0;
-  late OrderModel orderModel;
 
   late BasketBloc basketBloc;
+  final BasketServise basketServise = BasketServise();
 
   @override
   void initState() {
-    getAllPrice();
-    orderModel = OrderModel(
-        addres: 'Gyumri',
-        listBasketProductModel: widget.listBasketProducts,
-        orderPrise: allPrice.toString(),
-        phoneNumber: '+37498966976');
+    // getAllprice();
+
     basketBloc = BlocProvider.of<BasketBloc>(context);
 
     super.initState();
   }
 
-  void getAllPrice() {
-    for (var i = 0; i < widget.listBasketProducts.length; ++i) {
-      allPrice += widget.listBasketProducts[i].price *
-          widget.listBasketProducts[i].count;
+  void getAllprice() {
+    allPrice = 0;
+    for (var i = 0; i < widget.listBasketProducts.length; i++) {
+      setState(() {
+        allPrice += widget.listBasketProducts[i].count *
+            widget.listBasketProducts[i].price;
+      });
     }
-    print("price::: $allPrice");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
+    getAllprice();
     return SafeArea(
-      bottom: false,
       child: Scaffold(
         appBar: _appBar(),
-        body: Scaffold(body: _body()),
+        body: BlocProvider(
+            create: (BuildContext context) => basketBloc,
+            child: Scaffold(body: _body())),
       ),
     );
   }
 
   Widget _body() {
-    print(allPrice);
+    //print(allPrice);
     return Column(children: [
       Expanded(
         flex: 3,
         child: NotificationListener(
-          onNotification: (OverscrollIndicatorNotification overscroll) {
-            overscroll.disallowGlow();
-            return true;
-          },
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: widget.listBasketProducts.length,
-            itemBuilder: (context, index) {
-              final BasketProductModel product =
-                  widget.listBasketProducts[index];
-              return ProductItemBasket(
-                  onM: product.count == 0
-                      ? () {}
-                      : () {
-                          setState(() {
-                            product.count--;
-                          });
-                        },
-                  onP: () {
-                    setState(() {
-                      product.count++;
-                    });
-                  },
-                  onSave: () {
-                    setState(() {
-                      // basketBloc.add(DeleteFrombasketEvent(
-                      //     basketServise: BasketServise(),
-                      //     productId: product.id));
-                    });
-                  },
-                  icon: Icon(Icons.delete),
-                  count: product.count,
-                  name: product.name,
-                  price: product.price,
-                  image: product.image);
+            onNotification: (OverscrollIndicatorNotification overscroll) {
+              overscroll.disallowGlow();
+              return true;
             },
-          ),
-        ),
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: widget.listBasketProducts.length,
+              itemBuilder: (context, index) {
+                final BasketProductModel product =
+                    widget.listBasketProducts[index];
+                return ProductItemBasket(
+                    onM: product.count == 0
+                        ? () {}
+                        : () {
+                            setState(() {
+                              product.count--;
+                            });
+                            basketServise.upDateProductInBasket(product);
+                          },
+                    onP: () {
+                      setState(() {
+                        product.count++;
+                      });
+                      basketServise.upDateProductInBasket(product);
+                    },
+                    onSave: () {
+                      setState(() {
+                        widget.listBasketProducts.removeAt(index);
+                      });
+                      basketBloc.add(DeleteFrombasketEvent(
+                          basketServise: basketServise, productId: product.id));
+                    },
+                    icon: const Icon(Icons.delete),
+                    count: product.count,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image);
+              },
+            )),
       ),
       Container(
         width: MediaQuery.of(context).size.width,
@@ -145,11 +153,20 @@ class _ProductsInBasketWidgetState extends State<ProductsInBasketWidget> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {
-                  print(orderModel);
-                  basketBloc.add(AddOrder(
-                      basketServise: BasketServise(), orderModel: orderModel));
-                },
+                onPressed: widget.listBasketProducts.isEmpty
+                    ? null
+                    : () {
+                        basketBloc.add(AddOrder(
+                            basketServise: BasketServise(),
+                            orderModel: OrderModel(
+                                orderOwnerId:
+                                    FirebaseAuth.instance.currentUser!.uid,
+                                addres: 'Gyumri',
+                                listBasketProductModel:
+                                    widget.listBasketProducts,
+                                orderPrise: allPrice.toString(),
+                                phoneNumber: '+37498966976')));
+                      },
                 style: ElevatedButton.styleFrom(
                     primary: AppColors.red,
                     shape: RoundedRectangleBorder(

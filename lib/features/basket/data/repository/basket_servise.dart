@@ -5,23 +5,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class BasketServise {
+  // final DataBaseServise  dataBaseServise = DataBaseServise();
+  // final AuthServise authServise = AuthServise();
+
   final store = FirebaseFirestore.instance;
   final CollectionReference basketCollection =
       FirebaseFirestore.instance.collection('basket');
   Future<void> deleteProductFromBasket({required String ownerId}) async {
+    print('delet Product');
     basketCollection
         .where('ownerId', isEqualTo: ownerId)
         .get()
         .then((snapshot) {
-      for (DocumentSnapshot ds in snapshot.docs) {
+      for (final DocumentSnapshot ds in snapshot.docs) {
         ds.reference.delete();
       }
     });
   }
 
   Future<void> deleteProductByIdFromBasket({required String productId}) async {
+    print('delet Product');
     basketCollection.where('id', isEqualTo: productId).get().then((snapshot) {
-      for (DocumentSnapshot ds in snapshot.docs) {
+      for (final DocumentSnapshot ds in snapshot.docs) {
         ds.reference.delete();
       }
     });
@@ -36,11 +41,22 @@ class BasketServise {
     return doc;
   }
 
+  Stream<List<BasketProductModel>>? getStreamBasketProducts(String id) {
+    final res = basketCollection
+        .where('ownerId', isEqualTo: id)
+        .snapshots()
+        .map((event) => event.docs
+            .map((e) => BasketProductModel.fromJson(e.data()))
+            .toList());
+    return res;
+  }
+
   Future<void> addOrder(OrderModel orderModel) async {
     try {
       await store
           .collection('orders')
-          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .doc(FirebaseAuth.instance.currentUser!.uid +
+              DateTime.now().toString())
           .set(orderModel.toJson());
     } catch (e) {
       print(e.toString());
@@ -48,6 +64,7 @@ class BasketServise {
   }
 
   Future upDateBasket(ProductModel product) async {
+    print('upDateBasket');
     final String? res = FirebaseAuth.instance.currentUser?.uid;
     final String docPath = '${res!}+${product.id}';
     final BasketProductModel basketProductModel = BasketProductModel(
@@ -60,5 +77,19 @@ class BasketServise {
         ownerId: res);
 
     await basketCollection.doc(docPath).set(basketProductModel.toJson());
+  }
+
+  Future<void> upDateProductInBasket(BasketProductModel product) {
+    final String? res = FirebaseAuth.instance.currentUser?.uid;
+
+    return basketCollection
+        .where('ownerId', isEqualTo: res)
+        .where('id', isEqualTo: product.id)
+        .get()
+        .then((snapshot) {
+      for (final DocumentSnapshot ds in snapshot.docs) {
+        ds.reference.update({'count': product.count});
+      }
+    });
   }
 }

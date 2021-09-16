@@ -6,12 +6,22 @@ import 'package:baguette_app/features/basket/data/models/order_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'basket_event.dart';
 part 'basket_state.dart';
 
 class BasketBloc extends Bloc<BasketEvent, BasketState> {
-  BasketBloc() : super(BasketInitial());
+  BehaviorSubject<List<BasketProductModel>>? behaviorSubject;
+
+  BasketBloc() : super(BasketInitial()) {
+    print("object BasketBloc");
+    initBasketProdSubskription();
+  }
+
+  void initBasketProdSubskription() {
+    behaviorSubject = BehaviorSubject();
+  }
 
   @override
   Stream<BasketState> mapEventToState(
@@ -22,9 +32,11 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
           .deleteProductByIdFromBasket(productId: event.productId);
     } else if (event is GetproductsFromBasket) {
       yield BasketProductsLoading();
-      final List<BasketProductModel> listProductsFromBasket =
-          await event.basketServise.getBasketProducts(event.id);
-      yield BasketProductsLoaded(listBasketProducts: listProductsFromBasket);
+      event.basketServise.getStreamBasketProducts(event.id)?.listen((event) {
+        behaviorSubject?.sink.add(event);
+      });
+
+      yield BasketProductsLoaded();
     } else if (event is AddOrder) {
       yield BasketProductsLoading();
       await event.basketServise.addOrder(event.orderModel);

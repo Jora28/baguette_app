@@ -1,5 +1,6 @@
 import 'package:baguette_app/core/widgets/loading.dart';
 import 'package:baguette_app/core/widgets/show_toast.dart';
+import 'package:baguette_app/features/basket/data/models/basket_product_model.dart';
 import 'package:baguette_app/features/basket/data/repository/basket_servise.dart';
 import 'package:baguette_app/features/basket/presentation/basket_bloc/basket_bloc.dart';
 
@@ -19,44 +20,68 @@ class BasketPage extends StatefulWidget {
 
 class _BasketPageState extends State<BasketPage> {
   late BasketBloc basketBloc;
+
   @override
   void initState() {
-    basketBloc = BlocProvider.of(context);
+    basketBloc = BasketBloc();
     basketBloc.add(GetproductsFromBasket(
       basketServise: BasketServise(),
       id: FirebaseAuth.instance.currentUser!.uid,
     ));
-    // FirebaseMessaging.instance;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<BasketBloc, BasketState>(
-        listener: (context, state) {
-          if (state is OrderSended) {
-            showToast(context, 'The Deliver have been done');
-          }
+      body: BlocProvider<BasketBloc>(
+        create: (context) {
+          return basketBloc;
         },
-        builder: (BuildContext context, state) {
-          return Stack(
-            children: [
-              if (state is BasketProductsLoading)
-                const LoadingWidget()
-              else if (state is BasketProductsLoaded)
-                ProductsInBasketWidget(
-                  navigateFromProductPage: widget.basketBackArrowVisible,
-                  listBasketProducts: state.listBasketProducts,
-                ),
-              if (state is OrderSended)
-                ProductsInBasketWidget(
-                  navigateFromProductPage: true,
-                  listBasketProducts: [],
-                ),
-            ],
-          );
-        },
+        child: BlocConsumer<BasketBloc, BasketState>(
+          listener: (context, state) {
+            if (state is OrderSended) {
+              showToast(context, 'The Deliver have been done');
+            }
+          },
+          builder: (BuildContext context, state) {
+            return Stack(
+              children: [
+                if (state is BasketProductsLoading)
+                  const LoadingWidget()
+                else if (state is BasketProductsLoaded)
+                  StreamBuilder<List<BasketProductModel>>(
+                      stream: basketBloc.behaviorSubject,
+                      builder: (context, snapshot) {
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.done:
+                            return ProductsInBasketWidget(
+                              navigateFromProductPage:
+                                  widget.basketBackArrowVisible,
+                              listBasketProducts: snapshot.data!,
+                            );
+                          case ConnectionState.waiting:
+                            return const LoadingWidget();
+                          case ConnectionState.active:
+                            return ProductsInBasketWidget(
+                              navigateFromProductPage:
+                                  widget.basketBackArrowVisible,
+                              listBasketProducts: snapshot.data!,
+                            );
+
+                          case ConnectionState.none:
+                            return Container();
+                        }
+                      }),
+                if (state is OrderSended)
+                  ProductsInBasketWidget(
+                    navigateFromProductPage: widget.basketBackArrowVisible,
+                    listBasketProducts: [],
+                  ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
