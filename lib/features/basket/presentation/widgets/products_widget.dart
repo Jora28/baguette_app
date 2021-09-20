@@ -65,9 +65,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
           Container(
             child: Text(
               widget.productList.isNotEmpty
-                  ? StringUtils.titleCaseSingle(
-                      widget.productList[0].category[0])
-                  //  "${widget.productList[0].category[0].toUpperCase()}${widget.productList[0].category.substring(1)}"
+                  ? StringUtils.titleCaseSingle(widget.productList[0].category)
                   : "",
               style: const TextStyle(fontSize: 18),
             ),
