@@ -27,7 +27,7 @@ class _SignInPageState extends State<SignInPage> {
         ),
         child: BlocConsumer<SigninBloc, SigninState>(
           listener: (context, state) {
-            if (state is Error) {
+            if (state is SignInError) {
               showToast(
                   context: context,
                   text: state.message,
