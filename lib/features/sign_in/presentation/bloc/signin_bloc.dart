@@ -35,7 +35,8 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
         yield SignInEnded();
         context.router.push(const HomePageRoute());
       } on FirebaseException catch (e) {
-        final message = e.code.split('-').join(" ");
+        final String message = e.code.split('-').join(" ");
+
         yield SignInError(message: StringUtils.titleCaseSingle(message));
       }
     }

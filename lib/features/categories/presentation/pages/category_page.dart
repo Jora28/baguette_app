@@ -39,7 +39,7 @@ class _AllProductPageState extends State<AllProductPage> {
                 else if (state is CategoryLoaded)
                   AllProductsPageWidget(
                       listCategory: state.listCategoryModel,
-                      getCustomerModel: state.customerModel)
+                      customerModel: state.customerModel)
               ],
             );
           }),

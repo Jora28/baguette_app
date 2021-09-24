@@ -2,8 +2,8 @@ import 'package:baguette_app/core/router.gr.dart';
 import 'package:baguette_app/core/utils/colors.dart';
 import 'package:baguette_app/core/widgets/breakfast_slider.dart';
 import 'package:baguette_app/core/widgets/category_card.dart';
+import 'package:baguette_app/features/base_models/custumer_model.dart';
 import 'package:baguette_app/features/categories/data/category_model.dart';
-import 'package:baguette_app/features/categories/data/get_customer_model.dart';
 import 'package:baguette_app/features/categories/presentation/pages/settings_page.dart';
 
 import 'package:flutter/material.dart';
@@ -12,12 +12,12 @@ import 'package:auto_route/auto_route.dart';
 
 class AllProductsPageWidget extends StatefulWidget {
   final List<CategoryModel> listCategory;
-  final GetCustomerModel getCustomerModel;
+  final CustomerModel customerModel;
 
   const AllProductsPageWidget({
     Key? key,
     required this.listCategory,
-    required this.getCustomerModel,
+    required this.customerModel,
   }) : super(key: key);
 
   @override
@@ -148,7 +148,7 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
                                 AssetImage("assets/images/baguette.png"),
                           )),
                       SizedBox(
-                          child: Text(widget.getCustomerModel.name,
+                          child: Text(widget.customerModel.name,
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 14)))
                     ],
@@ -167,7 +167,7 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget> {
                             child: Container(
                               padding: const EdgeInsets.only(left: 8),
                               child: Text(
-                                widget.getCustomerModel.email,
+                                widget.customerModel.email,
                                 style: const TextStyle(
                                     color: Colors.black, fontSize: 14),
                                 maxLines: 2,

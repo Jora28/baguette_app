@@ -194,13 +194,15 @@ class _ProductsInBasketWidgetState extends State<ProductsInBasketWidget> {
 
   PreferredSize _appBar() {
     return PreferredSize(
-      preferredSize: const Size.fromHeight(80),
+      preferredSize: const Size.fromHeight(60),
       child: Container(
+        height: 50,
         decoration: BoxDecoration(
           boxShadow: Shadows.appBar,
           color: AppColors.white,
         ),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Visibility(
               visible: widget.navigateFromProductPage!,
