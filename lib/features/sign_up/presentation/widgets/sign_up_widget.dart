@@ -3,7 +3,7 @@ import 'package:baguette_app/core/utils/colors.dart';
 import 'package:baguette_app/core/utils/string_utils.dart';
 import 'package:baguette_app/core/widgets/button.dart';
 import 'package:baguette_app/core/widgets/input.dart';
-import 'package:baguette_app/features/sign_up/data/custumer_model.dart';
+import 'package:baguette_app/features/base_models/custumer_model.dart';
 import 'package:baguette_app/features/sign_up/presentation/bloc/signup_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +28,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   final TextEditingController _passwordEditCotroller = TextEditingController();
   final TextEditingController _nikNameeditController = TextEditingController();
 
-  bool isLoading = false;
 
   dynamic _onSignUp() async {
     if (!_formStateSingIn.currentState!.validate()) {
@@ -69,7 +68,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             ),
           ),
         ),
-        if (isLoading) const Center(child: CircularProgressIndicator())
       ],
     );
   }

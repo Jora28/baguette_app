@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:baguette_app/features/basket/data/repository/basket_servise.dart';
-import 'package:baguette_app/features/basket/data/repository/get_product.dart';
-import 'package:baguette_app/features/basket/data/models/product_model.dart';
+import 'package:baguette_app/features/products_list/data/get_product.dart';
+import 'package:baguette_app/features/products_list/data/product_model.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';

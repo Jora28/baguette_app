@@ -15,7 +15,7 @@ class CategoryError extends CategoryblocState {}
 
 class CategoryLoaded extends CategoryblocState {
   final List<CategoryModel> listCategoryModel;
-  final GetCustomerModel customerModel;
+  final CustomerModel customerModel;
   const CategoryLoaded({
     required this.listCategoryModel,
     required this.customerModel,

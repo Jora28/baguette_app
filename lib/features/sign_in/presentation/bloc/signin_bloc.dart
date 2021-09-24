@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:baguette_app/core/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:baguette_app/core/utils/string_utils.dart';
 import 'package:baguette_app/features/sign_in/data/data_sourse.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -34,8 +35,8 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
         yield SignInEnded();
         context.router.push(const HomePageRoute());
       } on FirebaseException catch (e) {
-        final message = e.code.split('-').join(" ");
-        yield Error(message: message.toUpperCase());
+        final String message = e.code.split('-').join(" ");
+        yield SignInError(message: StringUtils.titleCaseSingle(message));
       }
     }
   }

@@ -12,10 +12,10 @@ class SignInRequest extends SigninState {}
 
 class SignInEnded extends SigninState {}
 
-class Error extends SigninState {
+class SignInError extends SigninState {
   final String message;
 
-  const Error({required this.message});
+  const SignInError({required this.message});
 
   @override
   List<Object> get props => [message];

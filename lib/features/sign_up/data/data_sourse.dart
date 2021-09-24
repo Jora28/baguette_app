@@ -1,4 +1,4 @@
-import 'package:baguette_app/features/sign_up/data/custumer_model.dart';
+import 'package:baguette_app/features/base_models/custumer_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

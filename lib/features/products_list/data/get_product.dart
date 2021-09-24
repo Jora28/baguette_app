@@ -1,4 +1,4 @@
-import 'package:baguette_app/features/basket/data/models/product_model.dart';
+import 'package:baguette_app/features/products_list/data/product_model.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
